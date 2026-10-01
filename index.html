@@ -14,7 +14,7 @@
   <meta property="og:description" content="Agora você pode imprimir, colorir e recortar de novo." />
   <meta property="og:type" content="website" />
   <!-- Imagem de compartilhamento (WhatsApp/Facebook): troque pelo endereço completo do site quando publicar -->
-  <meta property="og:image" content="img/hero-bonecas.webp" />
+  <meta property="og:image" content="img/capa-video.webp" />
 
   <!-- =====================================================================
        CONFIGURAÇÃO — troque só aqui (veja o README.md)
@@ -71,8 +71,8 @@
   <!-- Fontes (Google Fonts, hospedadas no próprio site para carregar mais rápido no 4G) -->
   <link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <!-- Imagem principal: aparece primeiro na tela, então carrega com prioridade -->
-  <link rel="preload" href="img/hero-bonecas.webp" as="image" type="image/webp" fetchpriority="high" />
+  <!-- Capa do vídeo do topo: aparece primeiro na tela, então carrega com prioridade -->
+  <link rel="preload" href="img/capa-video.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -102,18 +102,24 @@
           Agora você pode imprimir, colorir e recortar de novo, sozinha para relaxar ou junto com quem você ama.
         </p>
 
-        <!-- IMAGEM: boneca de papel colorida com as roupinhas já recortadas ao lado, alguns lápis de cor
-             e uma tesourinha, sobre uma mesa clara (luz natural). Formato 4:3, 1200x900, em WebP. -->
-        <figure class="ph ph-hero" style="aspect-ratio: 4 / 3" data-ph="img/hero-bonecas.webp — boneca colorida, roupinhas recortadas, lápis de cor e tesoura">
-          <img
-            src="img/hero-bonecas.webp"
-            alt="Boneca de papel colorida com roupinhas recortadas, lápis de cor e uma tesoura sobre a mesa"
-            width="1200" height="900"
-            fetchpriority="high"
-            decoding="async"
-            onerror="this.parentNode.classList.add('ph-missing')"
-          />
-        </figure>
+        <!-- VÍDEO DO TOPO: mostra a capa e só baixa o vídeo quando a pessoa toca (com som).
+             Para trocar: substitua video/headline.mp4 (vertical 9:16) e img/capa-video.webp (um quadro do vídeo). -->
+        <div class="video-hero" data-video>
+          <video
+            src="video/headline.mp4"
+            poster="img/capa-video.webp"
+            width="1080" height="1920"
+            preload="none"
+            playsinline
+            loop
+          ></video>
+          <button type="button" class="video-play" data-video-play aria-label="Assistir ao vídeo com som">
+            <span class="video-play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </span>
+            <span class="video-play-text">Toque para assistir 🔊</span>
+          </button>
+        </div>
 
         <a class="btn" href="#planos">QUERO MINHAS BONECAS</a>
         <p class="micro">Arquivo digital · Acesso imediato no seu <span class="nw">e-mail</span> · Pagamento seguro</p>

@@ -178,6 +178,26 @@
     start();
   });
 
+  // Vídeo do topo: só baixa e toca quando a pessoa toca no botão (com som); depois mostra os controles normais
+  Array.prototype.forEach.call(document.querySelectorAll('[data-video]'), function (box) {
+    var video = box.querySelector('video');
+    var play = box.querySelector('[data-video-play]');
+    if (!video || !play) return;
+    play.addEventListener('click', function () {
+      play.hidden = true;
+      video.controls = true;
+      video.muted = false;
+      var p = video.play();
+      if (p && p.catch) {
+        p.catch(function () {
+          // Se o navegador bloquear o som, toca sem som (os controles deixam ligar o volume)
+          video.muted = true;
+          video.play().catch(function () {});
+        });
+      }
+    });
+  });
+
   var config = window.CONFIG || {};
   var checkout = config.checkout || {};
   var pageParams = new URLSearchParams(window.location.search);
