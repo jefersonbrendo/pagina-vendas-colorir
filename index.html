@@ -102,23 +102,22 @@
           Agora você pode imprimir, colorir e recortar de novo, sozinha para relaxar ou junto com quem você ama.
         </p>
 
-        <!-- VÍDEO DO TOPO: mostra a capa e só baixa o vídeo quando a pessoa toca (com som).
-             Para trocar: substitua video/headline.mp4 (vertical 9:16) e img/capa-video.webp (um quadro do vídeo). -->
+        <!-- VÍDEO DO TOPO: roda sozinho, sem som, em loop e sem controles. Começa logo depois que a página carrega
+             (até lá aparece a capa). Para trocar: substitua video/headline.mp4 (vertical 9:16) e img/capa-video.webp. -->
         <div class="video-hero" data-video>
           <video
-            src="video/headline.mp4"
+            data-src="video/headline.mp4"
             poster="img/capa-video.webp"
             width="1080" height="1920"
-            preload="none"
-            playsinline
+            muted
+            autoplay
             loop
+            playsinline
+            preload="none"
+            disablepictureinpicture
+            disableremoteplayback
+            aria-label="Vídeo: mãos colorindo o vestidinho de uma boneca de papel"
           ></video>
-          <button type="button" class="video-play" data-video-play aria-label="Assistir ao vídeo com som">
-            <span class="video-play-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
-            </span>
-            <span class="video-play-text">Toque para assistir 🔊</span>
-          </button>
         </div>
 
         <a class="btn" href="#planos">QUERO MINHAS BONECAS</a>

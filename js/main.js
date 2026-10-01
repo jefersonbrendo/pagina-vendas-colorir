@@ -178,24 +178,19 @@
     start();
   });
 
-  // Vídeo do topo: só baixa e toca quando a pessoa toca no botão (com som); depois mostra os controles normais
-  Array.prototype.forEach.call(document.querySelectorAll('[data-video]'), function (box) {
-    var video = box.querySelector('video');
-    var play = box.querySelector('[data-video-play]');
-    if (!video || !play) return;
-    play.addEventListener('click', function () {
-      play.hidden = true;
-      video.controls = true;
-      video.muted = false;
+  // Vídeo do topo: sem som, em loop e sem controles. Só começa a baixar depois que a página carregou
+  // (para não atrasar a abertura no 4G). Quem pediu "reduzir movimento" no aparelho vê só a capa.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-video] video'), function (video) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    video.muted = true;
+    var start = function () {
+      if (!video.getAttribute('src')) video.src = video.getAttribute('data-src');
       var p = video.play();
-      if (p && p.catch) {
-        p.catch(function () {
-          // Se o navegador bloquear o som, toca sem som (os controles deixam ligar o volume)
-          video.muted = true;
-          video.play().catch(function () {});
-        });
-      }
-    });
+      if (p && p.catch) p.catch(function () {});
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
   });
 
   var config = window.CONFIG || {};

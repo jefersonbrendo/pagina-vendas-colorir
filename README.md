@@ -26,7 +26,7 @@ carregam e os links de checkout só levam até a seção de preços.
 
 | Arquivo | O que mostrar | Tamanho |
 |---|---|---|
-| `video/headline.mp4` + `img/capa-video.webp` | ✅ já colocados: vídeo do topo (vertical 9:16) e a capa mostrada antes do play. Para trocar o vídeo, substitua os dois arquivos com os mesmos nomes | 1080x1920 e 540x960 |
+| `video/headline.mp4` + `img/capa-video.webp` | ✅ já colocados: vídeo do topo (vertical 9:16, roda sozinho, sem som e em loop) e a capa mostrada até ele começar. Para trocar o vídeo, substitua os dois arquivos com os mesmos nomes | 1080x1920 e 540x960 |
 | `img/com-a-neta.webp` | ✅ já colocada: avó e neta recortando juntas | 1000x750 (4:3) |
 | `img/amostra-1.webp` a `amostra-4.webp` | ✅ já colocadas (capas dos kits Bonecas Prontas, Realistas, Pets e Barbies). Aparecem em grade em "O que você recebe"; para mais, copie um bloco `<figure>` | 750x1000 (3:4) |
 | `img/prova-1.webp` a `prova-4.webp` | Prints de comentários **reais** das redes sociais (✅ as 4 já colocadas). Aparecem inteiros, sem corte | qualquer formato, até ~900 de largura |
