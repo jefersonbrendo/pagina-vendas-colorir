@@ -1,0 +1,13 @@
+# Site estático: não tem build, o Netlify publica a pasta como está.
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

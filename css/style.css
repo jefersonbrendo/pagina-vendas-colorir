@@ -1,0 +1,622 @@
+/* =====================================================================
+   Bonecas de Papel para Colorir — página para o público 30-65+
+   Mobile first, uma coluna, texto grande e contraste alto (WCAG AA)
+   ===================================================================== */
+
+/* Fontes do Google Fonts hospedadas no site (Lora nos títulos, Nunito Sans no texto) */
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/lora-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/nunito-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --bg: #fbf6ee;          /* creme */
+  --paper: #f3e9da;       /* papel antigo */
+  --card: #fffdf8;        /* folha clara dos cartões */
+  --ink: #3b2f2f;         /* texto principal (marrom bem escuro) */
+  --ink-soft: #5a4a45;    /* texto secundário (ainda com contraste alto) */
+  --rose: #9a4660;        /* rosa antigo escuro: botões */
+  --rose-dark: #7d3349;
+  --rose-light: #f3e0e4;
+  --lilac: #5e4f87;       /* lilás escuro para destaques de texto */
+  --lilac-light: #ebe5f4;
+  --mint: #2c6650;        /* verde-menta escuro para ícones/texto */
+  --mint-light: #ddefe6;
+  --line: #b98f9b;        /* linha tracejada de recorte */
+  --border: #e3d3c4;
+
+  --title: 'Lora', Georgia, 'Times New Roman', serif;
+  --body: 'Nunito Sans', 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--title);
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+a {
+  color: var(--rose-dark);
+}
+
+:focus-visible {
+  outline: 3px solid var(--lilac);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 16px;
+  z-index: 10;
+}
+.skip:focus {
+  left: 8px;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.narrow {
+  max-width: 720px;
+}
+
+.center {
+  text-align: center;
+}
+
+section {
+  padding: 48px 0;
+}
+
+/* Linha tracejada de recorte com a tesourinha, separando as seções */
+.cut {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 0;
+  border-top: 2px dashed var(--line);
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.cut::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -15px;
+  width: 28px;
+  height: 28px;
+  background: var(--bg)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239a4660' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='6' cy='6' r='3'/%3E%3Ccircle cx='6' cy='18' r='3'/%3E%3Cpath d='M8.1 8.1 20 20M8.1 15.9 20 4'/%3E%3C/svg%3E")
+    center / 24px no-repeat;
+}
+@media (min-width: 1040px) {
+  .cut {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ---------- Botão de compra (mesmo texto em todos) ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 440px;
+  min-height: 60px;
+  margin: 24px auto 12px;
+  padding: 14px 20px;
+  background: var(--rose);
+  color: #fff;
+  font-family: var(--body);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 14px;
+  box-shadow: 0 4px 0 var(--rose-dark);
+}
+.btn:hover {
+  background: var(--rose-dark);
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--rose-dark);
+}
+
+.micro {
+  font-size: 18px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin: 0;
+}
+
+/* ---------- Imagens com placeholder ----------
+   Se o arquivo da imagem ainda não existir, o quadro mostra o nome do arquivo que falta. */
+.ph {
+  position: relative;
+  width: 100%;
+  margin: 24px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--paper);
+}
+.ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ph-missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed var(--line);
+}
+.ph-missing img {
+  display: none;
+}
+.ph-missing::after {
+  content: 'IMAGEM: ' attr(data-ph);
+  padding: 16px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+/* ---------- 1. Topo ---------- */
+.hero {
+  padding-top: 36px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--paper) 0%, var(--bg) 100%);
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--lilac);
+  background: var(--lilac-light);
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+.lead {
+  font-size: 21px;
+  color: var(--ink);
+}
+.ph-hero {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- 2. Memória ---------- */
+.memoria p {
+  font-size: 20px;
+}
+.destaque {
+  font-family: var(--title);
+  font-size: 23px !important;
+  font-style: italic;
+  color: var(--lilac);
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* ---------- 3. Para quem é ---------- */
+.duo {
+  display: grid;
+  gap: 24px;
+  margin-top: 8px;
+}
+.card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 0 20px 20px;
+  overflow: hidden;
+}
+.card .ph {
+  margin: 0 -20px 20px;
+  width: calc(100% + 40px);
+  border-radius: 0;
+}
+.card p {
+  margin: 0;
+}
+
+/* ---------- 4. O que você recebe ---------- */
+.temas {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  display: grid;
+  gap: 12px;
+}
+.temas li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.temas li::before {
+  content: '';
+  flex: 0 0 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--mint-light)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c6650' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5 10 17 19 7'/%3E%3C/svg%3E")
+    center / 18px no-repeat;
+}
+.amostras {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.amostras .ph {
+  margin: 0;
+}
+
+/* ---------- 5. Como funciona ---------- */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  display: grid;
+  gap: 16px;
+}
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+.step-icon {
+  flex: 0 0 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--mint-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: var(--mint);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.step-text {
+  font-size: 20px;
+}
+.apoio {
+  background: var(--mint-light);
+  color: #1f4a3a;
+  border-left: 6px solid var(--mint);
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ---------- 6. Prova social ---------- */
+.prints {
+  display: grid;
+  gap: 16px;
+  margin-top: 8px;
+}
+.prints .ph {
+  margin: 0;
+  border: 2px solid var(--border);
+}
+
+/* ---------- 7. Planos ---------- */
+.planos {
+  background: var(--paper);
+}
+.cards {
+  display: grid;
+  gap: 24px;
+  margin: 24px 0;
+}
+.plano {
+  position: relative;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 16px 20px;
+  text-align: center;
+}
+.plano h3 {
+  font-size: 24px;
+}
+.plano-destaque {
+  border: 4px solid var(--rose);
+  padding-left: 14px; /* compensa a borda mais grossa, para o botão caber em uma linha */
+  padding-right: 14px;
+  box-shadow: 0 8px 24px rgba(154, 70, 96, 0.18);
+}
+.selo {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  background: var(--rose);
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 4px 18px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.preco {
+  font-family: var(--title);
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 8px 0 6px;
+  color: var(--ink);
+}
+.preco .rs {
+  font-size: 28px;
+  vertical-align: 0.6em;
+}
+.pag {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--mint);
+  margin-bottom: 16px;
+}
+.itens {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  text-align: left;
+}
+.itens li {
+  position: relative;
+  padding: 8px 0 8px 34px;
+  border-top: 1px dashed var(--border);
+  font-size: 19px;
+}
+.itens li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--mint-light)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c6650' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5 10 17 19 7'/%3E%3C/svg%3E")
+    center / 16px no-repeat;
+}
+.plano .btn {
+  margin-top: 16px;
+  margin-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  letter-spacing: 0;
+}
+
+/* ---------- 8. Garantia ---------- */
+.garantia {
+  text-align: center;
+}
+.selo-garantia {
+  width: 124px;
+  height: 124px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  border: 4px dashed var(--rose);
+  background: var(--rose-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.g-num {
+  font-family: var(--title);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--rose-dark);
+}
+.g-txt {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--rose-dark);
+}
+
+/* ---------- 9. Perguntas frequentes ---------- */
+.faq details {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 52px 18px 18px;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  min-height: 56px;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '+';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--rose);
+  line-height: 1;
+}
+.faq details[open] summary::after {
+  content: '−';
+}
+.faq details p {
+  padding: 0 18px 18px;
+  margin: 0;
+  font-size: 19px;
+}
+
+/* ---------- 10. Chamada final ---------- */
+.final {
+  text-align: center;
+  background: var(--rose-light);
+}
+.final p {
+  font-size: 21px;
+}
+
+/* ---------- 11. Rodapé ---------- */
+.rodape {
+  background: var(--ink);
+  color: #f7efe6;
+  text-align: center;
+  padding: 40px 0 32px;
+  font-size: 18px;
+}
+.rodape a {
+  color: #fff;
+}
+.rodape-titulo {
+  font-weight: 700;
+}
+.rodape-links a {
+  display: inline-block;
+  padding: 8px 4px;
+}
+.rodape-copy {
+  font-size: 16px;
+  color: #e6d9cc;
+  margin: 0;
+}
+
+/* ---------- Telas maiores ---------- */
+@media (min-width: 560px) {
+  .temas {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 760px) {
+  h1 {
+    font-size: 48px;
+  }
+  h2 {
+    font-size: 38px;
+  }
+  section {
+    padding: 72px 0;
+  }
+  .duo {
+    grid-template-columns: 1fr 1fr;
+  }
+  .prints {
+    grid-template-columns: 1fr 1fr;
+  }
+  .amostras {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 960px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+  .steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
