@@ -29,7 +29,6 @@ carregam e os links de checkout só levam até a seção de preços.
 |---|---|---|
 | `img/hero-bonecas.webp` | Boneca colorida com roupinhas recortadas, lápis de cor e tesoura sobre a mesa | 1200x900 (4:3) |
 | `img/memoria-caixa.webp` | ✅ já colocada: caixa antiga com bonecas e roupinhas de papel | 1000x1000 (1:1) |
-| `img/para-voce.webp` | ✅ já colocada: mulher colorindo à mesa, com café | 1000x750 (4:3) |
 | `img/com-a-neta.webp` | ✅ já colocada: avó e neta recortando juntas | 1000x750 (4:3) |
 | `img/amostra-1.webp` a `amostra-4.webp` | Páginas do material em traço para colorir, temas diferentes. Aparecem no carrossel da seção "O que você recebe" (para mais amostras, copie um bloco `car-slide`) | 800x1000 (4:5) |
 | `img/prova-1.webp` a `prova-4.webp` | Prints de comentários **reais** das redes sociais | até 800 de largura |
