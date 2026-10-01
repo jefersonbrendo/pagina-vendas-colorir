@@ -30,7 +30,7 @@ carregam e os links de checkout só levam até a seção de preços.
 | `img/hero-bonecas.webp` | Boneca colorida com roupinhas recortadas, lápis de cor e tesoura sobre a mesa | 1200x900 (4:3) |
 | `img/com-a-neta.webp` | ✅ já colocada: avó e neta recortando juntas | 1000x750 (4:3) |
 | `img/amostra-1.webp` a `amostra-4.webp` | ✅ já colocadas (capas dos kits Bonecas Prontas, Realistas, Pets e Barbies). Aparecem em grade em "O que você recebe"; para mais, copie um bloco `<figure>` | 750x1000 (3:4) |
-| `img/prova-1.webp` a `prova-4.webp` | Prints de comentários **reais** das redes sociais (✅ `prova-1` a `prova-3` já colocadas). Aparecem inteiros, sem corte | qualquer formato, até ~900 de largura |
+| `img/prova-1.webp` a `prova-4.webp` | Prints de comentários **reais** das redes sociais (✅ as 4 já colocadas). Aparecem inteiros, sem corte | qualquer formato, até ~900 de largura |
 
 Dica de peso: a imagem do topo deve ficar abaixo de ~150 KB para a página continuar rápida no 4G.
 Se uma imagem não tiver o formato indicado, ela é cortada para caber no quadro.
