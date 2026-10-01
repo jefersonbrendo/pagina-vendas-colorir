@@ -28,7 +28,7 @@ carregam e os links de checkout só levam até a seção de preços.
 | Arquivo | O que mostrar | Tamanho |
 |---|---|---|
 | `img/hero-bonecas.webp` | Boneca colorida com roupinhas recortadas, lápis de cor e tesoura sobre a mesa | 1200x900 (4:3) |
-| `img/memoria-caixa.webp` | Caixa de sapato antiga com roupinhas de papel (opcional) | 1200x800 (3:2) |
+| `img/memoria-caixa.webp` | ✅ já colocada: caixa antiga com bonecas e roupinhas de papel | 1000x1000 (1:1) |
 | `img/para-voce.webp` | Mulher de uns 55 anos colorindo à mesa, com uma xícara de café | 1000x750 (4:3) |
 | `img/com-a-neta.webp` | Avó e neta recortando bonecas juntas | 1000x750 (4:3) |
 | `img/amostra-1.webp` a `amostra-4.webp` | Páginas do material em traço para colorir, temas diferentes. Aparecem no carrossel da seção "O que você recebe" (para mais amostras, copie um bloco `car-slide`) | 800x1000 (4:5) |
