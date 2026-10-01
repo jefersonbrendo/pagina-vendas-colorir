@@ -575,6 +575,12 @@ section[id] {
 }
 
 /* ---------- 6. Prova social ---------- */
+.aviso-privacidade {
+  font-size: 18px;
+  color: var(--ink-3);
+  font-style: italic;
+  margin-top: -8px;
+}
 .prova .car-slide .ph {
   border-color: var(--pink-300);
   background: #fff;
