@@ -60,3 +60,6 @@ Se quiser mais ou menos prints, copie ou apague um bloco `<figure>` na seção 6
 - O pop-up fecha no X, na tecla Esc ou tocando fora dele.
 
 Os botões do topo, do meio e do fim dizem "QUERO MINHAS BONECAS" e levam até os pacotes (`#planos`).
+
+A **barra fixa de compra** (rodapé da tela, `<div class="barra-compra">`) também leva aos pacotes. Ela aparece
+depois que a pessoa passa do botão do topo e some quando os pacotes ou a chamada final estão na tela.

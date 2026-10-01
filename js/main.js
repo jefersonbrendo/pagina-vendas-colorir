@@ -23,6 +23,34 @@
   showToday();
   setInterval(showToday, 60000);
 
+  // Barra fixa de compra: aparece depois que o botão do topo sai da tela (rolando para baixo) e some
+  // quando os pacotes ou a chamada final estão visíveis (ali já existem botões de compra).
+  var buyBar = document.querySelector('[data-barra-compra]');
+  var heroButton = document.querySelector('.hero .btn');
+  var hideZones = document.querySelectorAll('#planos, .final');
+  if (buyBar && heroButton) {
+    var ticking = false;
+    var updateBar = function () {
+      ticking = false;
+      var vh = window.innerHeight;
+      var pastHero = heroButton.getBoundingClientRect().bottom < 0;
+      var inZone = Array.prototype.some.call(hideZones, function (zone) {
+        var r = zone.getBoundingClientRect();
+        return r.top < vh && r.bottom > 0;
+      });
+      buyBar.hidden = !pastHero || inZone;
+    };
+    var onScroll = function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateBar);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    updateBar();
+  }
+
   var config = window.CONFIG || {};
   var checkout = config.checkout || {};
   var pageParams = new URLSearchParams(window.location.search);
