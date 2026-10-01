@@ -201,32 +201,41 @@
           Mais de <strong>300 bonecas</strong> com roupinhas e acessórios, prontas para imprimir em folha A4 e colorir.
         </p>
 
-        <ul class="temas">
-          <li>Bichinhos</li>
-          <li>Moda</li>
-          <li>Princesas e fantasia</li>
-          <li>Casinha e móveis</li>
-          <li>Comidinhas</li>
-          <li>Profissões</li>
-          <li>Datas comemorativas</li>
-          <li>Spa e beleza</li>
-        </ul>
-
-        <!-- IMAGENS: 4 páginas de amostra do material, em traço para colorir (sem cor), mostrando temas diferentes.
-             Formato 4:5 (retrato), 800x1000, em WebP. -->
-        <div class="amostras">
-          <figure class="ph" style="aspect-ratio: 4 / 5" data-ph="img/amostra-1.webp — página de amostra">
-            <img src="img/amostra-1.webp" alt="Página de amostra: boneca e roupinhas para colorir" width="800" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph" style="aspect-ratio: 4 / 5" data-ph="img/amostra-2.webp — página de amostra">
-            <img src="img/amostra-2.webp" alt="Página de amostra: bichinhos para colorir" width="800" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph" style="aspect-ratio: 4 / 5" data-ph="img/amostra-3.webp — página de amostra">
-            <img src="img/amostra-3.webp" alt="Página de amostra: casinha e móveis para colorir" width="800" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph" style="aspect-ratio: 4 / 5" data-ph="img/amostra-4.webp — página de amostra">
-            <img src="img/amostra-4.webp" alt="Página de amostra: princesas e fantasia para colorir" width="800" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
+        <!-- CARROSSEL DE AMOSTRAS: passa sozinho, uma por vez (pausa ao tocar/passar o mouse).
+             IMAGENS: páginas de amostra do material, em traço para colorir (sem cor), temas diferentes.
+             Formato 4:5 (retrato), 800x1000, em WebP. Para mais amostras, copie um bloco "car-slide". -->
+        <div class="carrossel" data-carrossel aria-roledescription="carrossel" aria-label="Amostras do material">
+          <div class="car-viewport">
+            <div class="car-track">
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 4 / 5" data-ph="img/amostra-1.webp — página de amostra">
+                  <img src="img/amostra-1.webp" alt="Página de amostra: boneca e roupinhas para colorir" width="800" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 4 / 5" data-ph="img/amostra-2.webp — página de amostra">
+                  <img src="img/amostra-2.webp" alt="Página de amostra: bichinhos para colorir" width="800" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 4 / 5" data-ph="img/amostra-3.webp — página de amostra">
+                  <img src="img/amostra-3.webp" alt="Página de amostra: casinha e móveis para colorir" width="800" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 4 / 5" data-ph="img/amostra-4.webp — página de amostra">
+                  <img src="img/amostra-4.webp" alt="Página de amostra: princesas e fantasia para colorir" width="800" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="car-btn car-prev" data-car-prev aria-label="Amostra anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+          </button>
+          <button type="button" class="car-btn car-next" data-car-next aria-label="Próxima amostra">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+          </button>
+          <div class="car-dots" data-car-dots></div>
         </div>
       </div>
     </section>

@@ -410,41 +410,103 @@ section[id] {
 }
 
 /* ---------- 4. O que você recebe ---------- */
-.temas {
-  list-style: none;
-  padding: 0;
-  margin: 24px 0;
-  display: grid;
-  gap: 12px;
+/* Carrossel de amostras: uma por vez no celular, 2 no tablet e 3 no computador */
+.carrossel {
+  --per: 1;
+  position: relative;
+  max-width: 440px;
+  margin: 28px auto 0;
 }
-.temas li {
+.car-viewport {
+  overflow: hidden;
+  border-radius: 24px;
+}
+.car-track {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #fff;
-  border: 2px solid var(--pink-100);
-  border-top: 4px solid var(--pink-300);
-  border-radius: 20px;
-  padding: 14px 16px;
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--ink);
+  will-change: transform;
 }
-.temas li::before {
-  content: '';
-  flex: 0 0 36px;
-  height: 36px;
-  border-radius: 12px;
-  background: var(--check-white) center / 20px no-repeat, var(--cta);
+.car-slide {
+  flex: 0 0 calc(100% / var(--per));
+  padding: 0 6px;
 }
-.amostras {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.amostras .ph {
+.car-slide .ph {
   margin: 0;
   border: 2px solid var(--pink-100);
+}
+.car-btn {
+  position: absolute;
+  top: calc(50% - 30px);
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--pink-100);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 6px 16px -6px rgba(15, 23, 42, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.car-btn svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--pink-700);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.car-prev {
+  left: -10px;
+}
+.car-next {
+  right: -10px;
+}
+.car-dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 10px;
+}
+.car-dots button {
+  width: 44px; /* área de toque grande; o ponto visível é o ::before */
+  height: 44px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.car-dots button::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--pink-200, #fbcfe8);
+}
+.car-dots button[aria-current='true']::before {
+  width: 30px;
+  background: var(--pink) var(--cta);
+}
+@media (min-width: 760px) {
+  .carrossel {
+    --per: 2;
+    max-width: 760px;
+  }
+  .car-prev {
+    left: -22px;
+  }
+  .car-next {
+    right: -22px;
+  }
+}
+@media (min-width: 960px) {
+  .carrossel {
+    --per: 3;
+    max-width: 960px;
+  }
 }
 
 /* ---------- 5. Como funciona ---------- */
@@ -910,11 +972,6 @@ button.btn {
 }
 
 /* ---------- Telas maiores ---------- */
-@media (min-width: 560px) {
-  .temas {
-    grid-template-columns: 1fr 1fr;
-  }
-}
 @media (min-width: 760px) {
   h1 {
     font-size: 52px;
@@ -930,9 +987,6 @@ button.btn {
   }
   .prints {
     grid-template-columns: 1fr 1fr;
-  }
-  .amostras {
-    grid-template-columns: repeat(4, 1fr);
   }
 }
 @media (min-width: 760px) {

@@ -51,6 +51,133 @@
     updateBar();
   }
 
+  // Carrossel das amostras: passa sozinho, uma por vez, em loop.
+  // Pausa ao tocar, passar o mouse ou focar com o teclado, e quando a aba fica em segundo plano.
+  // Quem pediu "reduzir movimento" no aparelho não tem a rotação automática.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-carrossel]'), function (root) {
+    var track = root.querySelector('.car-track');
+    var originals = Array.prototype.slice.call(track.children);
+    var count = originals.length;
+    if (count < 2) return;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Cópias das primeiras amostras no fim, para o loop não ter "pulo" de volta
+    originals.slice(0, 3).forEach(function (slide) {
+      var clone = slide.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+
+    var index = 0;
+    var perView = function () {
+      return parseInt(getComputedStyle(root).getPropertyValue('--per'), 10) || 1;
+    };
+    var dotsBox = root.querySelector('[data-car-dots]');
+    var dots = originals.map(function (_, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Ver amostra ' + (i + 1) + ' de ' + count);
+      dot.addEventListener('click', function () { goTo(i); restart(); });
+      dotsBox.appendChild(dot);
+      return dot;
+    });
+
+    var fallback = null;
+    function setPosition(animate) {
+      track.style.transition = animate && !reduceMotion ? 'transform 0.6s ease' : 'none';
+      track.style.transform = 'translateX(' + (-index * 100 / perView()) + '%)';
+      var active = index % count;
+      dots.forEach(function (d, i) { d.setAttribute('aria-current', i === active ? 'true' : 'false'); });
+      Array.prototype.forEach.call(track.children, function (slide, i) {
+        var visible = i >= index && i < index + perView();
+        slide.setAttribute('aria-hidden', visible && i < count ? 'false' : 'true');
+      });
+    }
+    function settle() {
+      // Chegou nas cópias: volta para a amostra original equivalente, sem animação
+      if (index >= count) {
+        index = index % count;
+        setPosition(false);
+      }
+    }
+    function goTo(i) {
+      index = i;
+      setPosition(true);
+      clearTimeout(fallback);
+      fallback = setTimeout(settle, reduceMotion ? 0 : 700); // caso o transitionend não chegue
+    }
+    function next() { goTo(index + 1); }
+    function prev() {
+      if (index === 0) {
+        index = count;      // salta para a cópia do início, sem animação...
+        setPosition(false);
+        void track.offsetWidth;
+      }
+      goTo(index - 1);      // ...e anda uma para trás com animação
+    }
+    track.addEventListener('transitionend', function (e) {
+      if (e.target === track) settle();
+    });
+
+    root.querySelector('[data-car-next]').addEventListener('click', function () { next(); restart(); });
+    root.querySelector('[data-car-prev]').addEventListener('click', function () { prev(); restart(); });
+
+    // Arrastar com o dedo
+    var startX = null;
+    root.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; pause(); }, { passive: true });
+    root.addEventListener('touchend', function (e) {
+      if (startX !== null) {
+        var dx = e.changedTouches[0].clientX - startX;
+        if (dx < -40) next();
+        else if (dx > 40) prev();
+      }
+      startX = null;
+      resumeLater();
+    });
+
+    // Rotação automática
+    var timer = null;
+    var paused = false;
+    function start() {
+      if (reduceMotion || timer) return;
+      timer = setInterval(function () {
+        if (!paused && !document.hidden) next();
+      }, 3500);
+    }
+    function restart() {
+      clearInterval(timer);
+      timer = null;
+      start();
+    }
+    function pause() { paused = true; }
+    var resumeTimer = null;
+    function resumeLater() {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(function () { paused = false; }, 4000);
+    }
+    root.addEventListener('mouseenter', pause);
+    root.addEventListener('mouseleave', function () { paused = false; });
+    root.addEventListener('focusin', pause);
+    root.addEventListener('focusout', function () { paused = false; });
+
+    // Baixa todas as amostras quando a seção se aproxima, para nenhuma aparecer em branco ao passar
+    var loadAll = function () {
+      Array.prototype.forEach.call(track.querySelectorAll('img'), function (img) { img.loading = 'eager'; });
+    };
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { loadAll(); io.disconnect(); }
+      }, { rootMargin: '800px 0px' });
+      io.observe(root);
+    } else {
+      loadAll();
+    }
+
+    window.addEventListener('resize', function () { setPosition(false); });
+    setPosition(false);
+    start();
+  });
+
   var config = window.CONFIG || {};
   var checkout = config.checkout || {};
   var pageParams = new URLSearchParams(window.location.search);

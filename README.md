@@ -31,7 +31,7 @@ carregam e os links de checkout só levam até a seção de preços.
 | `img/memoria-caixa.webp` | Caixa de sapato antiga com roupinhas de papel (opcional) | 1200x800 (3:2) |
 | `img/para-voce.webp` | Mulher de uns 55 anos colorindo à mesa, com uma xícara de café | 1000x750 (4:3) |
 | `img/com-a-neta.webp` | Avó e neta recortando bonecas juntas | 1000x750 (4:3) |
-| `img/amostra-1.webp` a `amostra-4.webp` | Páginas do material em traço para colorir, temas diferentes | 800x1000 (4:5) |
+| `img/amostra-1.webp` a `amostra-4.webp` | Páginas do material em traço para colorir, temas diferentes. Aparecem no carrossel da seção "O que você recebe" (para mais amostras, copie um bloco `car-slide`) | 800x1000 (4:5) |
 | `img/prova-1.webp` a `prova-4.webp` | Prints de comentários **reais** das redes sociais | até 800 de largura |
 
 Dica de peso: a imagem do topo deve ficar abaixo de ~150 KB para a página continuar rápida no 4G.
