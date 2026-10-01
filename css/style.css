@@ -577,7 +577,12 @@ section[id] {
 /* ---------- 6. Prova social ---------- */
 .prova .car-slide .ph {
   border-color: var(--pink-300);
-  background: var(--blush);
+  background: #fff;
+}
+/* Prints de comentários: mostra a imagem inteira (sem cortar), centralizada */
+.prova .car-slide .ph img {
+  object-fit: contain;
+  padding: 12px;
 }
 
 /* ---------- 7. Planos (degradê rosa e roxo, como na página principal) ---------- */
