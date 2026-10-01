@@ -17,11 +17,11 @@
        ===================================================================== -->
   <script>
     window.CONFIG = {
-      // Link do checkout de cada plano (os botões "QUERO MINHAS BONECAS" dos cartões de preço)
+      // Link do checkout de cada pacote
       checkout: {
-        plano1: 'https://SEU-CHECKOUT/plano-1', // R$ 9,90
-        plano2: 'https://SEU-CHECKOUT/plano-2', // R$ 16,90
-        plano3: 'https://SEU-CHECKOUT/plano-3', // R$ 24,90
+        alegria: 'https://SEU-CHECKOUT/pacote-alegria',              // R$ 24,90 (card "Pacote Alegria")
+        alegriaOferta: 'https://SEU-CHECKOUT/pacote-alegria-oferta', // R$ 16,90 (pop-up que abre ao escolher o Básico)
+        basico: 'https://SEU-CHECKOUT/pacote-basico',                // R$ 9,90 (pop-up: "Quero apenas o Básico")
       },
       // ID do Pixel da Meta (Gerenciador de Eventos > Fontes de dados), só os números
       metaPixelId: 'SEU_PIXEL_ID_META',
@@ -294,47 +294,41 @@
         <p class="center planos-sub">Você paga uma vez e o arquivo é seu.</p>
 
         <div class="cards">
-          <!-- PLANO 1 — troque o nome e os itens entre [colchetes] -->
-          <article class="plano">
-            <h3>[NOME DO PLANO 1]</h3>
-            <p class="preco"><span class="rs">R$</span> 9,90</p>
-            <p class="pag">Pix ou cartão</p>
-            <ul class="itens">
-              <li>[Item incluído no plano 1]</li>
-              <li>[Item incluído no plano 1]</li>
-              <li>[Item incluído no plano 1]</li>
-            </ul>
-            <a class="btn" href="#planos" data-checkout="plano1" data-price="9.90">QUERO MINHAS BONECAS</a>
-          </article>
-
-          <!-- PLANO 2 -->
-          <article class="plano">
-            <h3>[NOME DO PLANO 2]</h3>
-            <p class="preco"><span class="rs">R$</span> 16,90</p>
-            <p class="pag">Pix ou cartão</p>
-            <ul class="itens">
-              <li>[Item incluído no plano 2]</li>
-              <li>[Item incluído no plano 2]</li>
-              <li>[Item incluído no plano 2]</li>
-              <li>[Item incluído no plano 2]</li>
-            </ul>
-            <a class="btn" href="#planos" data-checkout="plano2" data-price="16.90">QUERO MINHAS BONECAS</a>
-          </article>
-
-          <!-- PLANO 3 — destacado. Use "Mais escolhido" só se for verdade; se não, troque por "Mais completo". -->
+          <!-- PACOTE ALEGRIA (em destaque, igual à página principal) -->
           <article class="plano plano-destaque">
             <p class="selo">Mais escolhido</p>
-            <h3>[NOME DO PLANO 3]</h3>
+            <h3>PACOTE ALEGRIA</h3>
+            <p class="de">De <s>R$ 119,90</s> por apenas:</p>
             <p class="preco"><span class="rs">R$</span> 24,90</p>
+            <p class="economia"><span>Economize mais de R$ 95</span> <span class="off">-79% OFF</span></p>
             <p class="pag">Pix ou cartão</p>
             <ul class="itens">
-              <li>[Item incluído no plano 3]</li>
-              <li>[Item incluído no plano 3]</li>
-              <li>[Item incluído no plano 3]</li>
-              <li>[Item incluído no plano 3]</li>
-              <li>[Item incluído no plano 3]</li>
+              <li>+500 Bonecas de papel criativas!</li>
+              <li>Guarda-roupa completo por boneca</li>
+              <li>Guia de boas-vindas com método de uso</li>
+              <li>Recebimento imediato pelo e-mail</li>
+              <li>Suporte prioritário via WhatsApp</li>
+              <li>Acesso vitalício ilimitado</li>
             </ul>
-            <a class="btn" href="#planos" data-checkout="plano3" data-price="24.90">QUERO MINHAS BONECAS</a>
+            <a class="btn" href="#planos" data-checkout="alegria" data-price="24.90">QUERO MINHAS BONECAS</a>
+          </article>
+
+          <!-- PACOTE BÁSICO: o botão abre o pop-up com a oferta do Pacote Alegria por R$ 16,90 -->
+          <article class="plano">
+            <p class="essencial">Opção essencial</p>
+            <h3>PACOTE BÁSICO</h3>
+            <p class="de">Pagamento único</p>
+            <p class="preco"><span class="rs">R$</span> 9,90</p>
+            <p class="economia"><span>De <s>R$ 44,90</s></span> <span class="off">-78% OFF</span></p>
+            <p class="pag">Pix ou cartão</p>
+            <ul class="itens">
+              <li>+200 Bonecas de papel criativas!</li>
+              <li>Guia de boas-vindas com método de uso</li>
+              <li>Recebimento imediato pelo e-mail</li>
+              <li>Suporte via WhatsApp</li>
+              <li>Acesso vitalício</li>
+            </ul>
+            <button type="button" class="btn btn-basico" data-open-oferta>QUERO MINHAS BONECAS</button>
           </article>
         </div>
         <p class="micro center">Arquivo digital · Acesso imediato no seu e-mail · Pagamento seguro</p>
@@ -443,6 +437,29 @@
       <p class="rodape-copy">© 2026 [NOME DA SUA MARCA]. Todos os direitos reservados.</p>
     </div>
   </footer>
+
+  <!-- POP-UP: abre ao tocar no botão do Pacote Básico (mesma lógica da página principal) -->
+  <dialog id="oferta" class="oferta" aria-labelledby="oferta-titulo">
+    <div class="oferta-inner">
+    <button type="button" class="oferta-fechar" data-close-oferta aria-label="Fechar">&times;</button>
+    <h2 id="oferta-titulo">Espere! Que tal levar o Pacote Alegria?</h2>
+    <p class="oferta-sub">Só R$ 7,00 a mais que o Básico.</p>
+
+    <div class="oferta-box">
+      <p class="oferta-nome">PACOTE ALEGRIA</p>
+      <p class="de">De <s>R$ 24,90</s> por apenas:</p>
+      <p class="preco"><span class="rs">R$</span> 16,90</p>
+      <ul class="itens">
+        <li>+500 bonecas (em vez de 200)</li>
+        <li>Guarda-roupa completo</li>
+        <li>Suporte prioritário</li>
+      </ul>
+    </div>
+
+    <a class="btn btn-ouro" href="#planos" data-checkout="alegriaOferta" data-price="16.90">SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90</a>
+    <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
+    </div>
+  </dialog>
 
   <script src="js/main.js" defer></script>
 </body>

@@ -10,10 +10,10 @@ e acesse http://localhost:8000.
 
 | O quê | Onde |
 |---|---|
-| **Links do checkout** (um por plano) | `index.html`, bloco `window.CONFIG` no topo do `<head>`: `checkout.plano1`, `plano2`, `plano3` |
+| **Links do checkout** | `index.html`, bloco `window.CONFIG` no topo do `<head>`: `checkout.alegria` (R$ 24,90), `checkout.alegriaOferta` (R$ 16,90, do pop-up) e `checkout.basico` (R$ 9,90) |
 | **ID do Pixel da Meta** | `index.html`, `window.CONFIG.metaPixelId` **e** na tag `<noscript>` logo depois do `<body>` (`id=SEU_PIXEL_ID_META`) |
 | **Pixel da Utmify** | `index.html`, `window.CONFIG.utmifyPixelId`. O script de UTMs da Utmify já está no `<head>` e não precisa de ID |
-| **Preços, nomes e itens dos planos** | `index.html`, seção `<!-- 7. OFERTA E PREÇOS -->`. Os nomes e itens estão entre `[colchetes]`. Se mudar um preço, mude também o `data-price` do botão do plano (é o valor enviado ao Pixel da Meta) |
+| **Preços, nomes e benefícios dos pacotes** | `index.html`, seção `<!-- 7. OFERTA E PREÇOS -->` (cards) e o `<dialog id="oferta">` no fim da página (pop-up). Se mudar um preço, mude também o `data-price` do link (é o valor enviado ao Pixel da Meta) |
 | **Número de páginas** | `index.html`, seção `<!-- 4. O QUE VOCÊ RECEBE -->`: troque `[XXX]` |
 | **Imagens** | Coloque os arquivos na pasta `img/` com os nomes abaixo. Enquanto um arquivo não existir, a página mostra um quadro tracejado com o nome que falta |
 | **WhatsApp e e-mail de suporte** | `index.html`, rodapé (`<!-- 11. RODAPÉ -->`): link `https://wa.me/55XXXXXXXXXXX` (só números, com 55 e DDD), texto do número e e-mail |
@@ -21,7 +21,7 @@ e acesse http://localhost:8000.
 | **Política de privacidade e termos** | `privacidade.html` e `termos.html` |
 
 Os links e IDs ficam todos no `window.CONFIG`. Enquanto estiverem como `SEU-...`, os pixels não
-carregam e os botões dos planos só levam até a seção de preços.
+carregam e os links de checkout só levam até a seção de preços.
 
 ## Imagens (WebP, com estes nomes)
 
@@ -41,7 +41,7 @@ Se quiser mais ou menos prints, copie ou apague um bloco `<figure>` na seção 6
 ## Rastreamento
 
 - **Pixel da Meta:** envia `PageView` ao abrir a página e `InitiateCheckout` (com valor e moeda)
-  no clique dos botões dos planos, antes de ir para o checkout.
+  no clique de qualquer link de checkout (card do Alegria e os dois links do pop-up), antes de ir para o checkout.
 - **Utmify:** o script de UTMs e o pixel carregam cedo, no `<head>`. No painel da Utmify, configure
   a regra de Initiate Checkout **por URL** com o domínio do seu checkout (ex.: `pay.lowify.com.br`).
   Se a Utmify também estiver enviando eventos para o mesmo Pixel da Meta, confira no Gerenciador de
@@ -51,7 +51,12 @@ Se quiser mais ou menos prints, copie ou apague um bloco `<figure>` na seção 6
 - Não coloque `onclick` nos botões de compra: o pixel da Utmify chama o `onclick` no lugar de
   abrir o checkout, e o botão fica travado.
 
-## Botões
+## Pacotes e pop-up (mesma lógica da página principal)
 
-Todos dizem "QUERO MINHAS BONECAS". Os do topo, do meio e do fim levam até os planos (`#planos`).
-Os dos cartões de preço levam ao checkout do plano.
+- **Pacote Alegria — R$ 24,90:** o botão do card leva direto ao checkout (`checkout.alegria`).
+- **Pacote Básico — R$ 9,90:** o botão do card **abre um pop-up** oferecendo o Pacote Alegria por R$ 16,90:
+  - "SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90" leva a `checkout.alegriaOferta`;
+  - "Não, obrigada. Quero apenas o Básico por R$ 9,90" leva a `checkout.basico`.
+- O pop-up fecha no X, na tecla Esc ou tocando fora dele.
+
+Os botões do topo, do meio e do fim dizem "QUERO MINHAS BONECAS" e levam até os pacotes (`#planos`).

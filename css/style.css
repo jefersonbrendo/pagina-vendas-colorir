@@ -532,6 +532,154 @@ section {
   box-shadow: 0 10px 24px -6px rgba(251, 191, 36, 0.6);
 }
 
+/* Detalhes dos cards (iguais aos da página principal) */
+.essencial {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.de {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.economia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px 0 12px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--emerald-700);
+}
+.economia .off {
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-weight: 900;
+}
+.plano .pag {
+  margin-bottom: 14px;
+}
+button.btn {
+  border: 0;
+  cursor: pointer;
+}
+/* Botão verde do Pacote Básico, como na página principal */
+.btn-basico {
+  background: var(--emerald-700);
+  box-shadow: 0 10px 24px -8px rgba(4, 120, 87, 0.5);
+}
+.btn-basico:hover {
+  background: #065f46;
+}
+.btn-ouro {
+  background: var(--amber) linear-gradient(90deg, var(--amber) 0%, var(--yellow) 50%, #f59e0b 100%);
+  color: #020617;
+  box-shadow: 0 10px 24px -6px rgba(251, 191, 36, 0.6);
+}
+.btn-ouro:hover {
+  background: var(--amber);
+}
+
+/* ---------- Pop-up da oferta (abre ao escolher o Básico) ---------- */
+.oferta {
+  width: min(94vw, 540px);
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 0; /* o espaçamento fica na .oferta-inner, para tocar na margem não fechar o pop-up */
+  border: 0;
+  border-radius: 28px;
+  background: #fff;
+  color: var(--ink-2);
+  text-align: center;
+  box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.5);
+}
+.oferta-inner {
+  padding: 22px 18px 16px;
+}
+.oferta::backdrop {
+  background: rgba(15, 23, 42, 0.65);
+}
+.oferta h2 {
+  font-size: 25px;
+  margin: 0 44px 8px; /* espaço para o X */
+}
+.oferta-sub {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+.oferta .preco {
+  font-size: 50px;
+  margin: 4px 0 8px;
+}
+.oferta .itens li {
+  font-size: 18px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.oferta .itens li::before {
+  top: 6px;
+}
+.oferta-fechar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--pink-100);
+  color: var(--pink-700);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+.oferta-box {
+  margin: 0 0 4px;
+  padding: 12px 14px 8px;
+  border-radius: 22px;
+  border: 3px solid #fcd34d;
+  background: linear-gradient(135deg, #fffbeb 0%, var(--pink-50) 55%, #faf5ff 100%);
+}
+.oferta-nome {
+  display: table;
+  margin: 0 auto 6px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: #f3e8ff;
+  color: #581c87;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+.oferta .btn {
+  margin-top: 14px;
+  margin-bottom: 4px;
+  max-width: none;
+  line-height: 1.3;
+}
+.oferta-recusar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 8px 12px;
+  color: var(--ink-3);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 /* ---------- 8. Garantia ---------- */
 .garantia {
   background: var(--blush);

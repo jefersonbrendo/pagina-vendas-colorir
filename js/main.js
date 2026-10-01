@@ -25,13 +25,42 @@
     return !url || /SEU-CHECKOUT/.test(url);
   }
 
+  // Pop-up da oferta: abre no botão do Pacote Básico (mesma lógica da página principal)
+  var offer = document.getElementById('oferta');
+  function closeOffer() {
+    if (offer && offer.open) offer.close();
+  }
+  if (offer && typeof offer.showModal === 'function') {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-open-oferta]'), function (button) {
+      button.addEventListener('click', function () {
+        offer.showModal();
+      });
+    });
+    Array.prototype.forEach.call(offer.querySelectorAll('[data-close-oferta]'), function (button) {
+      button.addEventListener('click', closeOffer);
+    });
+    // Tocar fora da caixa (no fundo escuro) também fecha
+    offer.addEventListener('click', function (event) {
+      if (event.target === offer) closeOffer();
+    });
+  } else {
+    // Navegador muito antigo sem <dialog>: o botão do Básico vai direto para o checkout do Básico
+    Array.prototype.forEach.call(document.querySelectorAll('[data-open-oferta]'), function (button) {
+      button.addEventListener('click', function () {
+        var basic = document.querySelector('a[data-checkout="basico"]');
+        if (basic) basic.click();
+      });
+    });
+  }
+
   var links = document.querySelectorAll('a[data-checkout]');
   Array.prototype.forEach.call(links, function (link) {
     var url = checkout[link.getAttribute('data-checkout')];
 
     if (isPlaceholder(url)) {
-      // Enquanto o link não for configurado, o botão só leva aos planos.
+      // Enquanto o link não for configurado, o botão só leva aos planos (e fecha o pop-up, se estiver nele).
       console.warn('[checkout] Configure CONFIG.checkout.' + link.getAttribute('data-checkout') + ' no index.html');
+      link.addEventListener('click', closeOffer);
       return;
     }
 
