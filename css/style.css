@@ -251,6 +251,58 @@ section {
   font-family: ui-monospace, Consolas, monospace;
 }
 
+/* ---------- Barra "A promoção termina hoje" (igual à da página principal) ---------- */
+.topo-oferta {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3px 10px;
+  padding: 6px 12px;
+  background: var(--pink) var(--cta);
+  color: #fff;
+  font-size: 19px; /* 19px em negrito = "texto grande" no WCAG, contraste mínimo 3:1 sobre o degradê */
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-align: center;
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.3);
+}
+.topo-fogo {
+  width: 20px;
+  height: 20px;
+  fill: #fcd34d;
+  flex: 0 0 auto;
+}
+.topo-data {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 12px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+.topo-data svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #fde68a;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.invisivel {
+  visibility: hidden;
+}
+/* A barra fica presa no topo: as âncoras (#planos) param logo abaixo dela */
+section[id] {
+  scroll-margin-top: 64px;
+}
+
 /* ---------- 1. Topo ---------- */
 .hero {
   padding-top: 32px;

@@ -3,6 +3,26 @@
    - Dispara InitiateCheckout no Pixel da Meta antes de ir para o checkout.
    Os links e IDs ficam em window.CONFIG, no topo do index.html. */
 (function () {
+  // Barra do topo: data de hoje no horário de Brasília (ex.: 01/10/2026), atualiza se a página ficar aberta na virada do dia
+  var todaySlot = document.querySelector('[data-hoje]');
+  function showToday() {
+    if (!todaySlot) return;
+    try {
+      todaySlot.textContent = new Intl.DateTimeFormat('pt-BR', {
+        timeZone: 'America/Sao_Paulo',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      }).format(new Date());
+    } catch (e) {
+      var d = new Date();
+      todaySlot.textContent = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2) + '/' + d.getFullYear();
+    }
+    todaySlot.classList.remove('invisivel');
+  }
+  showToday();
+  setInterval(showToday, 60000);
+
   var config = window.CONFIG || {};
   var checkout = config.checkout || {};
   var pageParams = new URLSearchParams(window.location.search);
