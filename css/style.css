@@ -399,7 +399,25 @@ section[id] {
 }
 
 /* ---------- 4. O que você recebe ---------- */
-/* Carrossel de amostras: uma por vez no celular, 2 no tablet e 3 no computador */
+/* Amostras do material: grade de capas */
+.amostras {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 24px;
+}
+.amostras .ph {
+  margin: 0;
+  border: 2px solid var(--pink-100);
+}
+@media (min-width: 760px) {
+  .amostras {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Carrossel (comentários reais): um por vez no celular, 2 no tablet e 3 no computador */
 .carrossel {
   --per: 1;
   position: relative;
@@ -557,14 +575,8 @@ section[id] {
 }
 
 /* ---------- 6. Prova social ---------- */
-.prints {
-  display: grid;
-  gap: 16px;
-  margin-top: 8px;
-}
-.prints .ph {
-  margin: 0;
-  border: 2px solid var(--pink-300);
+.prova .car-slide .ph {
+  border-color: var(--pink-300);
   background: var(--blush);
 }
 
@@ -972,9 +984,6 @@ button.btn {
     padding: 80px 0;
   }
   .duo:not(.duo-um) {
-    grid-template-columns: 1fr 1fr;
-  }
-  .prints {
     grid-template-columns: 1fr 1fr;
   }
 }
