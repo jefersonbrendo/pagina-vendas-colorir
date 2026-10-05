@@ -99,14 +99,6 @@
     .card-texto h3 {
       margin-bottom: 8px;
     }
-    /* Linha logo abaixo do nome de cada pacote */
-    .plano-para {
-      margin: -2px 0 10px;
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 1.35;
-      color: var(--pink-700);
-    }
     /* Pop-up com o pacote completo: compacto para caber inteiro na tela do celular, sem rolar */
     .oferta {
       max-height: calc(100vh - 16px);
@@ -387,7 +379,6 @@
           <article class="plano plano-destaque">
             <p class="selo">Mais escolhido</p>
             <h3>PACOTE ALEGRIA</h3>
-            <p class="plano-para">Para mais de uma neta, ou para brincar o ano inteiro</p>
             <p class="de">De <s>R$ 119,90</s> por apenas:</p>
             <p class="preco"><span class="rs">R$</span> 24,90</p>
             <p class="economia"><span>Economize mais de R$ 95</span> <span class="off">-79% OFF</span></p>
@@ -405,7 +396,6 @@
           <!-- PACOTE BÁSICO: o botão abre o pop-up com a oferta do Pacote Alegria por R$ 16,90 -->
           <article class="plano">
             <h3>PACOTE BÁSICO</h3>
-            <p class="plano-para">Para presentear uma criança</p>
             <p class="de">Pagamento único</p>
             <p class="preco"><span class="rs">R$</span> 9,90</p>
             <p class="economia"><span>De <s>R$ 44,90</s></span> <span class="off">-78% OFF</span></p>
@@ -545,7 +535,7 @@
   <dialog id="oferta" class="oferta" aria-labelledby="oferta-titulo">
     <div class="oferta-inner">
     <button type="button" class="oferta-fechar" data-close-oferta aria-label="Fechar">&times;</button>
-    <h2 id="oferta-titulo">Espere! Que tal levar o Pacote Alegria para todas as netas?</h2>
+    <h2 id="oferta-titulo">Espere! Que tal levar o Pacote Alegria?</h2>
     <p class="oferta-sub">Só R$ 7,00 a mais que o Básico.</p>
 
     <div class="oferta-box">
