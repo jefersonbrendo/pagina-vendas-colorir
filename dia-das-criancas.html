@@ -99,27 +99,42 @@
     .card-texto h3 {
       margin-bottom: 8px;
     }
-    /* Carrossel das amostras em "O que você recebe".
-       Celular: 2 por vez, com a segunda cortada na borda da tela (mostra que tem mais para passar).
-       Computador: 2 por vez, grandes. */
+    /* Faixa das amostras em "O que você recebe": passa sozinha, sem parar, de ponta a ponta da tela.
+       O trilho tem as 4 amostras quatro vezes e anda metade do seu tamanho: a volta emenda sem "pulo". */
     .recebe {
-      overflow: hidden; /* o carrossel passa da borda direita da tela no celular */
+      overflow: hidden;
     }
-    .carrossel-amostras {
-      --per: 2;
-      max-width: none;
+    .faixa {
+      margin-top: 28px;
+      overflow: hidden;
     }
-    .carrossel-amostras .car-viewport {
-      margin-right: -40px;
-      border-radius: 24px 0 0 24px;
+    .faixa-track {
+      display: flex;
+      width: max-content;
+      animation: faixa-passa 48s linear infinite;
     }
-    @media (min-width: 760px) {
-      .carrossel-amostras {
-        max-width: 860px;
+    .faixa:hover .faixa-track {
+      animation-play-state: paused;
+    }
+    .faixa-item {
+      flex: 0 0 auto;
+      width: 46vw; /* no celular: quase 2 por tela */
+      max-width: 340px;
+      margin: 0 14px 0 0;
+      border: 2px solid var(--pink-100);
+    }
+    @keyframes faixa-passa {
+      to {
+        transform: translateX(-50%);
       }
-      .carrossel-amostras .car-viewport {
-        margin-right: 0;
-        border-radius: 24px;
+    }
+    /* Quem pediu "reduzir movimento" no aparelho: a faixa fica parada e dá para arrastar com o dedo */
+    @media (prefers-reduced-motion: reduce) {
+      .faixa {
+        overflow-x: auto;
+      }
+      .faixa-track {
+        animation: none;
       }
     }
     /* Pop-up com o pacote completo: compacto para caber inteiro na tela do celular, sem rolar */
@@ -327,41 +342,62 @@
         <p class="center">
           Mais de 300 bonecas no Pacote Básico e mais de 500 no Pacote Alegria, com roupinhas e acessórios. Uma parte já vem colorida e outra é para pintar. Tudo pronto para imprimir em folha A4.
         </p>
+      </div>
 
-        <!-- AMOSTRAS: capas dos kits em carrossel, passando sozinho (2 por vez, a segunda cortada na borda no celular; 2 no computador).
-             Mesmo carrossel dos comentários. Formato 3:4, 750x1000, em WebP. Para mais, copie um bloco "car-slide". -->
-        <div class="carrossel carrossel-amostras" data-carrossel aria-roledescription="carrossel" aria-label="Amostras das bonecas">
-          <div class="car-viewport">
-            <div class="car-track">
-              <div class="car-slide">
-                <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra">
-                  <img src="img/amostra-1.webp" alt="Amostra do kit Bonecas Prontas: princesa de vestido vermelho e dourado" width="750" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-                </figure>
-              </div>
-              <div class="car-slide">
-                <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra">
-                  <img src="img/amostra-2.webp" alt="Amostra do kit Realistas: boneca ruiva com roupinhas, chapéu e sapatos para recortar" width="750" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-                </figure>
-              </div>
-              <div class="car-slide">
-                <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra">
-                  <img src="img/amostra-3.webp" alt="Amostra do kit Pets: bichinhos fofos para recortar" width="750" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-                </figure>
-              </div>
-              <div class="car-slide">
-                <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra">
-                  <img src="img/amostra-4.webp" alt="Amostra do kit Bonecas Fashion: boneca com vestido lilás, coroa, luvas e sapatos" width="750" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-                </figure>
-              </div>
-            </div>
-          </div>
-          <button type="button" class="car-btn car-prev" data-car-prev aria-label="Amostra anterior">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
-          </button>
-          <button type="button" class="car-btn car-next" data-car-next aria-label="Próxima amostra">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
-          </button>
-          <div class="car-dots" data-car-dots></div>
+      <!-- AMOSTRAS: capas dos kits numa faixa que passa sozinha, sem parar, de ponta a ponta da tela.
+           Formato 3:4, 750x1000, em WebP. As 4 amostras aparecem quatro vezes para a volta não ter "pulo" nem buraco:
+           para trocar ou acrescentar uma, mude nos quatro grupos (os três últimos são cópias, com alt vazio). -->
+      <div class="faixa" aria-label="Amostras das bonecas" role="region">
+        <div class="faixa-track">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra">
+            <img src="img/amostra-1.webp" alt="Amostra do kit Bonecas Prontas: princesa de vestido vermelho e dourado" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra">
+            <img src="img/amostra-2.webp" alt="Amostra do kit Realistas: boneca ruiva com roupinhas, chapéu e sapatos para recortar" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra">
+            <img src="img/amostra-3.webp" alt="Amostra do kit Pets: bichinhos fofos para recortar" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra">
+            <img src="img/amostra-4.webp" alt="Amostra do kit Bonecas Fashion: boneca com vestido lilás, coroa, luvas e sapatos" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <!-- cópias das 4 amostras, para o loop (a faixa precisa ser mais larga que a tela, mesmo no computador) -->
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-1.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-2.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-3.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-4.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-1.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-2.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-3.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-4.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-1.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-2.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-3.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra" aria-hidden="true">
+            <img src="img/amostra-4.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
         </div>
       </div>
     </section>
