@@ -1,0 +1,6 @@
+# Cabeçalhos de cache no Cloudflare Pages (mesmas regras do netlify.toml e do vercel.json)
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/*
+  Cache-Control: public, max-age=604800
