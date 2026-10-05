@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <!-- DIA-DAS-CRIANCAS -->
+  <title>Bonecas de Papel · Presente de Dia das Crianças da vó para a neta</title>
+  <meta name="description" content="Mais de 300 bonecas de papel para imprimir, colorir e recortar com a neta. Chega na hora no seu e-mail, sem frete." />
+  <meta name="theme-color" content="#FFF0F5" />
+  <!-- DIA-DAS-CRIANCAS -->
+  <meta property="og:title" content="Bonecas de Papel · Presente de Dia das Crianças da vó para a neta" />
+  <meta property="og:description" content="Mais de 300 bonecas de papel para imprimir, colorir e recortar com a neta. Chega na hora no seu e-mail, sem frete." />
+  <meta property="og:type" content="website" />
+  <!-- Imagem de compartilhamento (WhatsApp/Facebook): troque pelo endereço completo do site quando publicar -->
+  <meta property="og:image" content="img/com-a-neta.webp" />
+
+  <!-- =====================================================================
+       CONFIGURAÇÃO — troque só aqui (veja o README.md).
+       Versão de Dia das Crianças: os mesmos links e IDs do index.html. Se mudar lá, mude aqui também.
+       ===================================================================== -->
+  <script>
+    window.CONFIG = {
+      // Link do checkout de cada pacote
+      checkout: {
+        alegria: 'https://pay.lowify.com.br/go.php?offer=9f3a1b8f',           // R$ 24,90 (card "Pacote Alegria")
+        alegriaOferta: 'https://pay.lowify.com.br/go.php?offer=1b1b44d3',     // R$ 16,90 (pop-up que abre ao escolher o Básico)
+        basico: 'https://pay.lowify.com.br/checkout.php?product_id=Abi8Xx',   // R$ 9,90 (pop-up: "Quero apenas o Básico")
+      },
+      // ID do Pixel da Meta (Gerenciador de Eventos > Fontes de dados), só os números
+      metaPixelId: 'SEU_PIXEL_ID_META',
+      // ID do pixel da Utmify (painel da Utmify > Pixels)
+      utmifyPixelId: 'SEU_PIXEL_ID_UTMIFY',
+    };
+  </script>
+
+  <!-- Pixel da Meta: carrega cedo e envia PageView. Não carrega enquanto o ID for o placeholder. -->
+  <script>
+    (function (id) {
+      if (!id || /^SEU_/.test(id)) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', id);
+      fbq('track', 'PageView');
+    })(window.CONFIG.metaPixelId);
+  </script>
+
+  <!-- Utmify: script de UTMs + pixel, carregando cedo para não perder visitas -->
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-xcod-sck
+    data-utmify-prevent-subids
+    async
+    defer
+  ></script>
+  <script>
+    (function (id) {
+      if (!id || /^SEU_/.test(id)) return;
+      window.pixelId = id;
+      var s = document.createElement('script');
+      s.async = true;
+      s.defer = true;
+      s.src = 'https://cdn.utmify.com.br/scripts/pixel/pixel.js';
+      document.head.appendChild(s);
+    })(window.CONFIG.utmifyPixelId);
+  </script>
+
+  <!-- Fontes (Google Fonts, hospedadas no próprio site para carregar mais rápido no 4G) -->
+  <link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Imagem do topo: aparece primeiro na tela, então carrega com prioridade -->
+  <link rel="preload" href="img/com-a-neta.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Ajustes só desta versão (o css/style.css é o mesmo da página principal e não foi alterado) -->
+  <style>
+    /* Imagem de avó e neta no topo, no lugar do vídeo */
+    .foto-hero {
+      max-width: 560px;
+      margin: 24px auto;
+      border: 4px solid #fff;
+      border-radius: 28px;
+      box-shadow: 0 20px 40px -18px rgba(225, 29, 116, 0.45);
+    }
+    /* Botões com texto maior: se quebrar em duas linhas, fica bem espaçado */
+    .btn {
+      line-height: 1.25;
+    }
+    /* Resposta da marca logo abaixo de um comentário */
+    .resposta {
+      margin: 10px 0 0;
+      padding: 10px 14px;
+      border-left: 4px solid var(--pink-300);
+      border-radius: 0 16px 16px 0;
+      background: var(--pink-50);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.45;
+      text-align: left;
+    }
+    /* Cards sem foto em "Por que é um bom presente" */
+    .card-texto {
+      padding-top: 22px;
+    }
+    .card-texto h3 {
+      margin-bottom: 8px;
+    }
+    /* Linha logo abaixo do nome de cada pacote */
+    .plano-para {
+      margin: -2px 0 10px;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: var(--pink-700);
+    }
+    /* Barra fixa: o texto mais longo pode quebrar em vez de empurrar o botão para fora da tela */
+    .barra-preco {
+      white-space: normal;
+      text-align: right;
+      line-height: 1.3;
+    }
+    /* Texto de corpo com no mínimo 18px */
+    .rodape-copy {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Pixel da Meta para quem está com JavaScript desligado (troque o ID também aqui) -->
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_META&amp;ev=PageView&amp;noscript=1" /></noscript>
+
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- DIA-DAS-CRIANCAS -->
+  <div class="topo-oferta" role="note">
+    <svg class="topo-fogo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5-1.5 8 0 1.6 1.2 2.8 2.6 2.8 1.6 0 2.6-1.3 2.4-3.3 2.4 1.9 3.5 4.4 3.5 6.5 0 3.9-3.1 6-7 6s-7-2.4-7-6.3C5 9.8 10.6 7.3 12 2z"/></svg>
+    <span>PRESENTE DE DIA DAS CRIANÇAS · CHEGA NA HORA, SEM FRETE</span>
+  </div>
+
+  <main id="conteudo">
+
+    <!-- 1. TOPO -->
+    <section class="hero">
+      <div class="wrap">
+        <!-- DIA-DAS-CRIANCAS -->
+        <p class="eyebrow">Presente de Dia das Crianças</p>
+        <!-- DIA-DAS-CRIANCAS -->
+        <h1>O presente de Dia das Crianças que vocês duas vão fazer juntas</h1>
+        <p class="lead">
+          Mais de 300 bonecas de papel para imprimir, colorir e recortar com a sua neta. A brincadeira da sua infância, agora com ela.
+        </p>
+
+        <!-- IMAGEM DO TOPO: avó e neta recortando bonecas de papel juntas (a mesma da seção "Para quem é?" da página principal). -->
+        <figure class="ph foto-hero" style="aspect-ratio: 4 / 3" data-ph="img/com-a-neta.webp — avó e neta recortando juntas">
+          <img
+            src="img/com-a-neta.webp"
+            alt="Avó e neta sorrindo enquanto recortam bonecas de papel juntas na mesa"
+            width="1000" height="750"
+            fetchpriority="high" decoding="async"
+            onerror="this.parentNode.classList.add('ph-missing')"
+          />
+        </figure>
+
+        <a class="btn" href="#planos">QUERO O PRESENTE DA MINHA NETA</a>
+        <p class="micro">Chega na hora no seu <span class="nw">e-mail</span> · Imprime quantas vezes quiser · Pagamento seguro</p>
+      </div>
+    </section>
+
+    <!-- 2. PROVA SOCIAL — só prints de comentários REAIS das redes sociais -->
+    <section class="prova">
+      <div class="wrap">
+        <p class="pill">Comentários reais</p>
+        <h2>Quem brincou nunca esqueceu</h2>
+        <p class="center">Comentários de quem viu as bonecas nas nossas redes. Agora é a vez da neta.</p>
+
+        <!-- CARROSSEL DE COMENTÁRIOS: passa sozinho, um por vez (pausa ao tocar/passar o mouse).
+             IMAGENS: prints de comentários REAIS (Instagram/Facebook), em WebP, com nomes e fotos borrados
+             se a pessoa não autorizou. Qualquer formato: a imagem aparece inteira, sem corte. Para mais, copie um bloco "car-slide". -->
+        <div class="carrossel" data-carrossel aria-roledescription="carrossel" aria-label="Comentários reais">
+          <div class="car-viewport">
+            <div class="car-track">
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 4 / 3" data-ph="img/prova-1.webp — print de comentário real">
+                  <img src="img/prova-1.webp" alt="Comentário de Francisca: Bateu uma saudade hoje, estou com 69 anos de idade e foi o período mais feliz da minha vida" width="866" height="320" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 4 / 3" data-ph="img/prova-2.webp — print de comentário real">
+                  <img src="img/prova-2.webp" alt="Comentário de Luana: Eu brincava e amava, será que ainda tem?" width="866" height="216" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+                <p class="resposta"><strong>Bonecas de Papel:</strong> Tem, e agora chega pelo celular.</p>
+              </div>
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 4 / 3" data-ph="img/prova-3.webp — print de comentário real">
+                  <img src="img/prova-3.webp" alt="Comentário de Luciana: Brinquei muito com elas, eu amava trocar de roupinhas!" width="866" height="268" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 4 / 3" data-ph="img/prova-4.webp — print de comentário real">
+                  <img src="img/prova-4.webp" alt="Comentário de Livia: Ah, como eu gostava!" width="866" height="212" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="car-btn car-prev" data-car-prev aria-label="Comentário anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+          </button>
+          <button type="button" class="car-btn car-next" data-car-next aria-label="Próximo comentário">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+          </button>
+          <div class="car-dots" data-car-dots></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. POR QUE É UM BOM PRESENTE -->
+    <section class="para-quem">
+      <div class="wrap">
+        <p class="pill">Por que é um bom presente</p>
+        <h2>Um presente de vó, feito à mão</h2>
+        <div class="duo">
+          <article class="card card-texto">
+            <h3>Sem tela e sem pilha</h3>
+            <p>Papel, tesoura sem ponta e lápis de cor. Só isso.</p>
+          </article>
+          <article class="card card-texto">
+            <h3>Vocês fazem juntas</h3>
+            <p>Uma tarde na mesa da cozinha. Você ensina a recortar, ela escolhe as cores.</p>
+          </article>
+          <article class="card card-texto">
+            <h3>Serve para todas as netas</h3>
+            <p>Você imprime quantas vezes quiser. Se estragar, é só imprimir de novo.</p>
+          </article>
+          <!-- DIA-DAS-CRIANCAS -->
+          <article class="card card-texto">
+            <h3>Chega na hora</h3>
+            <p>Sem frete e sem esperar o correio. Dá tempo para o dia 12.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. O QUE VOCÊ RECEBE -->
+    <section class="recebe">
+      <div class="wrap">
+        <p class="pill">Material completo</p>
+        <h2>O que você recebe</h2>
+        <p class="center">
+          Mais de 300 bonecas no Pacote Básico e mais de 500 no Pacote Alegria, com roupinhas e acessórios. Uma parte já vem colorida e outra é para pintar. Tudo pronto para imprimir em folha A4.
+        </p>
+
+        <!-- AMOSTRAS: capas dos kits, em grade (2 por linha no celular, 4 no computador). Formato 3:4, 750x1000, em WebP. -->
+        <div class="amostras">
+          <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra">
+            <img src="img/amostra-1.webp" alt="Amostra do kit Bonecas Prontas: princesa de vestido vermelho e dourado" width="750" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra">
+            <img src="img/amostra-2.webp" alt="Amostra do kit Realistas: boneca ruiva com roupinhas, chapéu e sapatos para recortar" width="750" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra">
+            <img src="img/amostra-3.webp" alt="Amostra do kit Pets: bichinhos fofos para recortar" width="750" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra">
+            <img src="img/amostra-4.webp" alt="Amostra do kit Bonecas Fashion: boneca com vestido lilás, coroa, luvas e sapatos" width="750" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COMO VIRA PRESENTE -->
+    <section class="passos">
+      <div class="wrap">
+        <p class="pill">Passo a passo</p>
+        <h2>Como vira presente</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
+            </span>
+            <span class="step-text"><strong>1.</strong> Você compra e recebe na hora, no seu <span class="nw">e-mail</span>.</span>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg>
+            </span>
+            <span class="step-text"><strong>2.</strong> Imprime em casa ou leva na papelaria do bairro.</span>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg>
+            </span>
+            <span class="step-text"><strong>3.</strong> Recorta e, se quiser, pede para plastificar.</span>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <span class="step-text"><strong>4.</strong> Coloca num envelope com o nome da neta e um laço.</span>
+          </li>
+          <!-- DIA-DAS-CRIANCAS -->
+          <li>
+            <span class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.1A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/></svg>
+            </span>
+            <span class="step-text"><strong>5.</strong> Entrega no dia 12 e brinca junto.</span>
+          </li>
+        </ol>
+        <p class="apoio">
+          Não tem impressora? É só mandar pelo WhatsApp para a papelaria do seu bairro.
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. OFERTA E PREÇOS -->
+    <section class="planos" id="planos">
+      <div class="wrap">
+        <p class="pill">Pagamento único</p>
+        <h2>Escolha o presente</h2>
+        <p class="center planos-sub">Você paga uma vez e imprime quantas vezes quiser.</p>
+
+        <div class="cards">
+          <!-- PACOTE ALEGRIA (em destaque, igual à página principal) -->
+          <article class="plano plano-destaque">
+            <p class="selo">Mais escolhido</p>
+            <h3>PACOTE ALEGRIA</h3>
+            <p class="plano-para">Para mais de uma neta, ou para brincar o ano inteiro</p>
+            <p class="de">De <s>R$ 119,90</s> por apenas:</p>
+            <p class="preco"><span class="rs">R$</span> 24,90</p>
+            <p class="economia"><span>Economize mais de R$ 95</span> <span class="off">-79% OFF</span></p>
+            <ul class="itens">
+              <li>+500 Bonecas de papel criativas!</li>
+              <li>Guarda-roupa completo por boneca</li>
+              <li>Guia de boas-vindas com método de uso</li>
+              <li>Recebimento imediato pelo <span class="nw">e-mail</span></li>
+              <li>Suporte prioritário via WhatsApp</li>
+              <li>Acesso vitalício ilimitado</li>
+            </ul>
+            <a class="btn" href="#planos" data-checkout="alegria" data-price="24.90">QUERO O PRESENTE DA MINHA NETA</a>
+          </article>
+
+          <!-- PACOTE BÁSICO: o botão abre o pop-up com a oferta do Pacote Alegria por R$ 16,90 -->
+          <article class="plano">
+            <h3>PACOTE BÁSICO</h3>
+            <p class="plano-para">Para presentear uma criança</p>
+            <p class="de">Pagamento único</p>
+            <p class="preco"><span class="rs">R$</span> 9,90</p>
+            <p class="economia"><span>De <s>R$ 44,90</s></span> <span class="off">-78% OFF</span></p>
+            <ul class="itens">
+              <li>+300 Bonecas de papel criativas!</li>
+              <li>Guia de boas-vindas com método de uso</li>
+              <li>Recebimento imediato pelo <span class="nw">e-mail</span></li>
+              <li>Suporte via WhatsApp</li>
+              <li>Acesso vitalício</li>
+            </ul>
+            <button type="button" class="btn btn-basico" data-open-oferta>QUERO O PRESENTE DA MINHA NETA</button>
+          </article>
+        </div>
+        <p class="micro center">Chega na hora no seu <span class="nw">e-mail</span> · Imprime quantas vezes quiser · Pagamento seguro</p>
+      </div>
+    </section>
+
+    <!-- 8. GARANTIA -->
+    <section class="garantia">
+      <div class="wrap narrow">
+        <div class="garantia-card">
+          <div class="garantia-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.4 3.4 8.4 8 9 4.6-.6 8-4.6 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+          </div>
+          <h2>Garantia de 7 dias</h2>
+          <p>
+            Você tem 7 dias para olhar todo o material com calma. Se não gostar, por qualquer motivo,
+            é só mandar uma mensagem que devolvemos 100% do seu dinheiro.
+          </p>
+          <p>Sem perguntas e sem complicação.</p>
+          <p class="garantia-selo">7 dias de garantia incondicional</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. PERGUNTAS FREQUENTES -->
+    <section class="faq">
+      <div class="wrap narrow">
+        <p class="pill">Tire suas dúvidas</p>
+        <h2>Perguntas frequentes</h2>
+
+        <!-- DIA-DAS-CRIANCAS -->
+        <details>
+          <summary>Dá tempo para o Dia das Crianças?</summary>
+          <p>
+            Dá. As bonecas chegam no seu <span class="nw">e-mail</span> assim que o pagamento é aprovado, e você imprime no mesmo dia.
+          </p>
+        </details>
+
+        <details>
+          <summary>Posso imprimir para mais de uma neta?</summary>
+          <p>
+            Pode. Você imprime quantas vezes quiser, para todas as netas.
+          </p>
+        </details>
+
+        <details>
+          <summary>Vou receber algo pelo correio?</summary>
+          <p>
+            Não. As bonecas chegam no seu <span class="nw">e-mail</span>, para você imprimir. Nada chega pelo correio,
+            e por isso você recebe na hora.
+          </p>
+        </details>
+
+        <details>
+          <summary>Não sou boa com tecnologia, vou conseguir?</summary>
+          <p>
+            Vai, sim. Depois do pagamento, as bonecas chegam no seu <span class="nw">e-mail</span>.
+            É só tocar para abrir. Se precisar de ajuda em qualquer passo, fale com a gente pelo WhatsApp.
+          </p>
+        </details>
+
+        <details>
+          <summary>Preciso ter impressora?</summary>
+          <p>
+            Não. Você pode mandar as bonecas pelo WhatsApp para a papelaria do seu bairro e buscar
+            as folhas impressas. Se tiver impressora em casa, também funciona.
+          </p>
+        </details>
+
+        <details>
+          <summary>Que papel e que lápis usar?</summary>
+          <p>
+            Papel sulfite comum já funciona. Para as bonecas ficarem mais firmes, use um papel um pouco
+            mais grosso, de 120 g a 180 g, que toda papelaria tem. Para colorir, lápis de cor comum é o ideal.
+          </p>
+        </details>
+
+        <details>
+          <summary>Serve para crianças pequenas?</summary>
+          <p>
+            Serve para colorir junto. As peças são pequenas e o recorte usa tesoura, então as crianças
+            devem brincar sempre com a supervisão de um adulto.
+          </p>
+        </details>
+
+        <details>
+          <summary>Como recebo as bonecas?</summary>
+          <p>
+            Assim que o pagamento é aprovado, as bonecas chegam no seu <span class="nw">e-mail</span>, prontas para imprimir.
+            Se não encontrar, olhe também a caixa de spam ou fale com a gente pelo WhatsApp.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 10. CHAMADA FINAL -->
+    <!-- DIA-DAS-CRIANCAS -->
+    <section class="final">
+      <div class="wrap narrow">
+        <p class="pill">Presente de Dia das Crianças</p>
+        <h2>Neste Dia das Crianças, dê uma tarde com você de presente.</h2>
+        <p>Imprime hoje, entrega no dia 12.</p>
+        <a class="btn" href="#planos">QUERO O PRESENTE DA MINHA NETA</a>
+        <p class="micro">Chega na hora no seu <span class="nw">e-mail</span> · Imprime quantas vezes quiser · Pagamento seguro</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 11. RODAPÉ -->
+  <footer class="rodape">
+    <div class="wrap">
+      <p class="rodape-titulo">Precisa de ajuda? Fale com a gente:</p>
+      <p>
+        <a href="mailto:suporte@bonecasdepapel.com.br">suporte@bonecasdepapel.com.br</a>
+      </p>
+      <p class="rodape-links">
+        <a href="privacidade.html">Política de privacidade</a>
+        <span aria-hidden="true">·</span>
+        <a href="termos.html">Termos de uso</a>
+      </p>
+      <p class="rodape-copy">© 2026 Bonecas de papel. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- BARRA FIXA DE COMPRA: aparece depois do topo e some quando os pacotes ou a chamada final estão na tela -->
+  <!-- DIA-DAS-CRIANCAS -->
+  <div class="barra-compra" data-barra-compra hidden>
+    <p class="barra-preco">Presente de Dia das Crianças a partir de <strong>R$ 9,90</strong> · Pix ou cartão</p>
+    <a class="btn" href="#planos">QUERO O PRESENTE DA MINHA NETA</a>
+  </div>
+
+  <!-- POP-UP: abre ao tocar no botão do Pacote Básico (mesma lógica da página principal) -->
+  <dialog id="oferta" class="oferta" aria-labelledby="oferta-titulo">
+    <div class="oferta-inner">
+    <button type="button" class="oferta-fechar" data-close-oferta aria-label="Fechar">&times;</button>
+    <h2 id="oferta-titulo">Espere! Que tal levar o Pacote Alegria para todas as netas?</h2>
+    <p class="oferta-sub">Só R$ 7,00 a mais que o Básico.</p>
+
+    <div class="oferta-box">
+      <p class="oferta-nome">PACOTE ALEGRIA</p>
+      <p class="de">De <s>R$ 24,90</s> por apenas:</p>
+      <p class="preco"><span class="rs">R$</span> 16,90</p>
+      <ul class="itens">
+        <li>+500 bonecas (em vez de 300)</li>
+        <li>Guarda-roupa completo</li>
+        <li>Suporte prioritário</li>
+      </ul>
+    </div>
+
+    <a class="btn btn-ouro" href="#planos" data-checkout="alegriaOferta" data-price="16.90">SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90</a>
+    <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
+    </div>
+  </dialog>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
