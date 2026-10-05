@@ -727,14 +727,6 @@ section[id] {
 }
 
 /* Detalhes dos cards (iguais aos da página principal) */
-.essencial {
-  margin: 0 0 4px;
-  font-size: 18px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-3);
-}
 .de {
   margin: 0;
   font-size: 18px;
