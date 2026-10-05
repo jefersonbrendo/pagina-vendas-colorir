@@ -3,3 +3,6 @@ Thumbs.db
 *.log
 .vercel
 .netlify
+
+# Cache local do wrangler (publicação no Cloudflare Pages)
+.wrangler/
