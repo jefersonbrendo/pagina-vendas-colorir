@@ -107,31 +107,78 @@
       line-height: 1.35;
       color: var(--pink-700);
     }
-    /* Pop-up com o pacote completo: no celular fica mais alto que a tela, então os botões ficam
-       presos no fim do pop-up enquanto a lista rola, e os espaços ficam um pouco menores */
-    .oferta-acoes {
-      position: sticky;
-      bottom: 0;
-      margin: 0 -18px -16px;
-      padding: 2px 18px 8px;
-      background: #fff;
-      box-shadow: 0 -10px 16px -12px rgba(15, 23, 42, 0.35);
+    /* Pop-up com o pacote completo: compacto para caber inteiro na tela do celular, sem rolar */
+    .oferta {
+      max-height: calc(100vh - 16px);
+      max-height: calc(100dvh - 16px);
     }
-    .oferta-acoes .btn {
-      margin-top: 10px;
+    .oferta-inner {
+      padding: 12px 12px 8px;
     }
-    .oferta-box .plano-para {
-      margin: 0 0 4px;
+    .oferta-fechar {
+      top: 6px;
+      right: 6px;
+      width: 44px;
+      height: 44px;
     }
-    .oferta-box .economia {
-      margin-bottom: 6px;
+    .oferta h2 {
+      font-size: 21px;
+      margin: 0 38px 4px;
+    }
+    .oferta-sub {
+      margin-bottom: 8px;
+    }
+    .oferta-box {
+      padding: 6px 10px 4px;
+    }
+    .oferta-nome {
+      margin-bottom: 2px;
+      padding: 2px 14px;
+    }
+    .oferta .preco {
+      font-size: 40px;
+      margin: 2px 0 6px;
+    }
+    .oferta .preco .rs {
+      font-size: 22px;
+    }
+    /* Selo de desconto ao lado do preço */
+    .preco-off {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
+      font-family: var(--body);
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.3;
+      vertical-align: 0.5em;
+    }
+    .oferta .itens {
+      margin: 0 0 2px;
     }
     .oferta .itens li {
-      padding-top: 2px;
-      padding-bottom: 2px;
+      padding: 2px 0 2px 32px;
+      line-height: 1.25;
     }
     .oferta .itens li::before {
-      top: 3px;
+      top: 2px;
+      width: 22px;
+      height: 22px;
+      background-size: 14px;
+    }
+    .oferta .btn {
+      margin-top: 8px;
+      min-height: 56px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .oferta-recusar {
+      min-height: 44px;
+      padding-top: 4px;
+      padding-bottom: 4px;
     }
     /* Sem barra fixa de compra: o rodapé não precisa do espaço extra embaixo */
     .rodape {
@@ -503,24 +550,20 @@
 
     <div class="oferta-box">
       <p class="oferta-nome">PACOTE ALEGRIA</p>
-      <p class="plano-para">O pacote completo, com tudo incluído</p>
       <p class="de">De <s>R$ 24,90</s> por apenas:</p>
-      <p class="preco"><span class="rs">R$</span> 16,90</p>
-      <p class="economia"><span>Economize R$ 8,00</span> <span class="off">-32% OFF</span></p>
+      <p class="preco"><span class="rs">R$</span> 16,90 <span class="preco-off">-32% OFF</span></p>
       <ul class="itens">
-        <li>+500 Bonecas de papel criativas! (em vez de 300)</li>
-        <li>Guarda-roupa completo por boneca</li>
-        <li>Guia de boas-vindas com método de uso</li>
-        <li>Recebimento imediato pelo <span class="nw">e-mail</span></li>
-        <li>Suporte prioritário via WhatsApp</li>
-        <li>Acesso vitalício ilimitado</li>
+        <li>+500 bonecas (em vez de 300)</li>
+        <li>Guarda-roupa completo</li>
+        <li>Guia de boas-vindas</li>
+        <li>Recebe na hora no <span class="nw">e-mail</span></li>
+        <li>Suporte prioritário</li>
+        <li>Acesso vitalício</li>
       </ul>
     </div>
 
-    <div class="oferta-acoes">
-      <a class="btn btn-ouro" href="#planos" data-checkout="alegriaOferta" data-price="16.90">SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90</a>
-      <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
-    </div>
+    <a class="btn btn-ouro" href="#planos" data-checkout="alegriaOferta" data-price="16.90">SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90</a>
+    <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
     </div>
   </dialog>
 
