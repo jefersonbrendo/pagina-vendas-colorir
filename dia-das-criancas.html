@@ -107,11 +107,9 @@
       line-height: 1.35;
       color: var(--pink-700);
     }
-    /* Barra fixa: o texto mais longo pode quebrar em vez de empurrar o botão para fora da tela */
-    .barra-preco {
-      white-space: normal;
-      text-align: right;
-      line-height: 1.3;
+    /* Sem barra fixa de compra: o rodapé não precisa do espaço extra embaixo */
+    .rodape {
+      padding-bottom: 40px;
     }
     /* Texto de corpo com no mínimo 18px */
     .rodape-copy {
@@ -469,13 +467,6 @@
       <p class="rodape-copy">© 2026 Bonecas de papel. Todos os direitos reservados.</p>
     </div>
   </footer>
-
-  <!-- BARRA FIXA DE COMPRA: aparece depois do topo e some quando os pacotes ou a chamada final estão na tela -->
-  <!-- DIA-DAS-CRIANCAS -->
-  <div class="barra-compra" data-barra-compra hidden>
-    <p class="barra-preco">Presente de Dia das Crianças a partir de <strong>R$ 9,90</strong> · Pix ou cartão</p>
-    <a class="btn" href="#planos">QUERO O PRESENTE DA MINHA NETA</a>
-  </div>
 
   <!-- POP-UP: abre ao tocar no botão do Pacote Básico (mesma lógica da página principal) -->
   <dialog id="oferta" class="oferta" aria-labelledby="oferta-titulo">
