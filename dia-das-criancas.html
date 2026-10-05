@@ -99,6 +99,16 @@
     .card-texto h3 {
       margin-bottom: 8px;
     }
+    /* Depoimento do WhatsApp abaixo do carrossel de comentários: imagem inteira, centralizada */
+    .depoimento {
+      max-width: 360px;
+      margin: 20px auto 0;
+      border: 2px solid var(--pink-300);
+      background: #fff;
+    }
+    .depoimento img {
+      object-fit: contain;
+    }
     /* Faixa das amostras em "O que você recebe": passa sozinha, sem parar, de ponta a ponta da tela.
        O trilho tem as 5 amostras quatro vezes e anda metade do seu tamanho: a volta emenda sem "pulo". */
     .recebe {
@@ -306,6 +316,11 @@
           </button>
           <div class="car-dots" data-car-dots></div>
         </div>
+
+        <!-- DEPOIMENTO NO WHATSAPP: print inteiro, no formato original (vertical 2:3, 720x1080), sem recorte. -->
+        <figure class="ph depoimento" style="aspect-ratio: 2 / 3" data-ph="img/prova-whatsapp.webp — depoimento no WhatsApp">
+          <img src="img/prova-whatsapp.webp" alt="Conversa no WhatsApp: a cliente Ana conta que o material é muito bom, que imprimiu para a neta no mesmo dia e aproveitou para imprimir algumas para ela também" width="720" height="1080" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+        </figure>
       </div>
     </section>
 
