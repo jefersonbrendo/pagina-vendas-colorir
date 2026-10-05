@@ -99,15 +99,15 @@
     .card-texto h3 {
       margin-bottom: 8px;
     }
-    /* Carrossel das amostras em "O que você recebe": 2 por vez no celular e 3 no computador */
+    /* Carrossel das amostras em "O que você recebe": 1 por vez no celular e 2 no computador, em tamanho grande */
     .carrossel-amostras {
-      --per: 2;
-      max-width: 520px;
+      --per: 1;
+      max-width: 400px;
     }
     @media (min-width: 760px) {
       .carrossel-amostras {
-        --per: 3;
-        max-width: 960px;
+        --per: 2;
+        max-width: 860px;
       }
     }
     /* Pop-up com o pacote completo: compacto para caber inteiro na tela do celular, sem rolar */
@@ -316,7 +316,7 @@
           Mais de 300 bonecas no Pacote Básico e mais de 500 no Pacote Alegria, com roupinhas e acessórios. Uma parte já vem colorida e outra é para pintar. Tudo pronto para imprimir em folha A4.
         </p>
 
-        <!-- AMOSTRAS: capas dos kits em carrossel, passando sozinho (2 por vez no celular, 3 no computador).
+        <!-- AMOSTRAS: capas dos kits em carrossel, passando sozinho (1 por vez no celular, 2 no computador).
              Mesmo carrossel dos comentários. Formato 3:4, 750x1000, em WebP. Para mais, copie um bloco "car-slide". -->
         <div class="carrossel carrossel-amostras" data-carrossel aria-roledescription="carrossel" aria-label="Amostras das bonecas">
           <div class="car-viewport">
