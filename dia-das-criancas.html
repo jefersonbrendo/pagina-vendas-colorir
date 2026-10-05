@@ -107,6 +107,32 @@
       line-height: 1.35;
       color: var(--pink-700);
     }
+    /* Pop-up com o pacote completo: no celular fica mais alto que a tela, então os botões ficam
+       presos no fim do pop-up enquanto a lista rola, e os espaços ficam um pouco menores */
+    .oferta-acoes {
+      position: sticky;
+      bottom: 0;
+      margin: 0 -18px -16px;
+      padding: 2px 18px 8px;
+      background: #fff;
+      box-shadow: 0 -10px 16px -12px rgba(15, 23, 42, 0.35);
+    }
+    .oferta-acoes .btn {
+      margin-top: 10px;
+    }
+    .oferta-box .plano-para {
+      margin: 0 0 4px;
+    }
+    .oferta-box .economia {
+      margin-bottom: 6px;
+    }
+    .oferta .itens li {
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
+    .oferta .itens li::before {
+      top: 3px;
+    }
     /* Sem barra fixa de compra: o rodapé não precisa do espaço extra embaixo */
     .rodape {
       padding-bottom: 40px;
@@ -477,17 +503,24 @@
 
     <div class="oferta-box">
       <p class="oferta-nome">PACOTE ALEGRIA</p>
+      <p class="plano-para">O pacote completo, com tudo incluído</p>
       <p class="de">De <s>R$ 24,90</s> por apenas:</p>
       <p class="preco"><span class="rs">R$</span> 16,90</p>
+      <p class="economia"><span>Economize R$ 8,00</span> <span class="off">-32% OFF</span></p>
       <ul class="itens">
-        <li>+500 bonecas (em vez de 300)</li>
-        <li>Guarda-roupa completo</li>
-        <li>Suporte prioritário</li>
+        <li>+500 Bonecas de papel criativas! (em vez de 300)</li>
+        <li>Guarda-roupa completo por boneca</li>
+        <li>Guia de boas-vindas com método de uso</li>
+        <li>Recebimento imediato pelo <span class="nw">e-mail</span></li>
+        <li>Suporte prioritário via WhatsApp</li>
+        <li>Acesso vitalício ilimitado</li>
       </ul>
     </div>
 
-    <a class="btn btn-ouro" href="#planos" data-checkout="alegriaOferta" data-price="16.90">SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90</a>
-    <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
+    <div class="oferta-acoes">
+      <a class="btn btn-ouro" href="#planos" data-checkout="alegriaOferta" data-price="16.90">SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90</a>
+      <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
+    </div>
     </div>
   </dialog>
 
