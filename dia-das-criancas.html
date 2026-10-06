@@ -251,14 +251,9 @@
 
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- DIA-DAS-CRIANCAS -->
+  <!-- Barra do topo: garantia e pagamento -->
   <div class="topo-oferta" role="note">
-    <svg class="topo-fogo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5-1.5 8 0 1.6 1.2 2.8 2.6 2.8 1.6 0 2.6-1.3 2.4-3.3 2.4 1.9 3.5 4.4 3.5 6.5 0 3.9-3.1 6-7 6s-7-2.4-7-6.3C5 9.8 10.6 7.3 12 2z"/></svg>
-    <span>A PROMOÇÃO TERMINA EM</span>
-    <span class="topo-data">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M10 2h4"/></svg>
-      <span data-cronometro>13:45</span>
-    </span>
+    <span>7 DIAS DE GARANTIA · PAGAMENTO SEGURO POR PIX</span>
   </div>
 
   <main id="conteudo">
@@ -676,27 +671,5 @@
   </dialog>
 
   <script src="js/main.js" defer></script>
-  <!-- Cronômetro da barra do topo: começa em 13:45 e conta até 00:00. O fim fica guardado no navegador
-       da pessoa, então recarregar a página não reinicia a contagem. Para mudar o tempo, troque DURACAO. -->
-  <script>
-    (function () {
-      var DURACAO = (13 * 60 + 45) * 1000;
-      var slot = document.querySelector('[data-cronometro]');
-      if (!slot) return;
-      var fim = 0;
-      try { fim = parseInt(localStorage.getItem('ddc-cronometro-fim'), 10) || 0; } catch (e) {}
-      if (!fim) {
-        fim = Date.now() + DURACAO;
-        try { localStorage.setItem('ddc-cronometro-fim', String(fim)); } catch (e) {}
-      }
-      function mostra() {
-        var resta = Math.max(0, Math.round((fim - Date.now()) / 1000));
-        slot.textContent = ('0' + Math.floor(resta / 60)).slice(-2) + ':' + ('0' + (resta % 60)).slice(-2);
-        if (!resta) clearInterval(timer);
-      }
-      var timer = setInterval(mostra, 1000);
-      mostra();
-    })();
-  </script>
 </body>
 </html>
