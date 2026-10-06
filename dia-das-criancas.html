@@ -34,6 +34,8 @@
       metaPixelId: 'SEU_PIXEL_ID_META',
       // ID do pixel da Utmify (painel da Utmify > Pixels)
       utmifyPixelId: 'SEU_PIXEL_ID_UTMIFY',
+      // ID do projeto no Microsoft Clarity (clarity.microsoft.com > Settings > Overview)
+      clarityId: 'ytkietj34k',
     };
   </script>
 
@@ -69,6 +71,18 @@
       s.src = 'https://cdn.utmify.com.br/scripts/pixel/pixel.js';
       document.head.appendChild(s);
     })(window.CONFIG.utmifyPixelId);
+  </script>
+
+  <!-- Microsoft Clarity: gravações de sessão e mapas de calor. Não carrega enquanto o ID for o placeholder. -->
+  <script>
+    (function (id) {
+      if (!id || /^SEU_/.test(id)) return;
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", id);
+    })(window.CONFIG.clarityId);
   </script>
 
   <!-- Fontes (Google Fonts, hospedadas no próprio site para carregar mais rápido no 4G) -->

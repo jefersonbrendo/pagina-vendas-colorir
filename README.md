@@ -13,6 +13,7 @@ e acesse http://localhost:8000.
 | **Links do checkout** | `index.html`, bloco `window.CONFIG` no topo do `<head>`: `checkout.alegria` (R$ 24,90), `checkout.alegriaOferta` (R$ 16,90, do pop-up) e `checkout.basico` (R$ 9,90) |
 | **ID do Pixel da Meta** | `index.html`, `window.CONFIG.metaPixelId` **e** na tag `<noscript>` logo depois do `<body>` (`id=SEU_PIXEL_ID_META`) |
 | **Pixel da Utmify** | `index.html`, `window.CONFIG.utmifyPixelId`. O script de UTMs da Utmify já está no `<head>` e não precisa de ID |
+| **Microsoft Clarity** | `window.CONFIG.clarityId` no `index.html` **e** no `dia-das-criancas.html` (ID do projeto, hoje `ytkietj34k`). Para desligar, troque por `SEU_ID_CLARITY` |
 | **Preços, nomes e benefícios dos pacotes** | `index.html`, seção `<!-- 7. OFERTA E PREÇOS -->` (cards) e o `<dialog id="oferta">` no fim da página (pop-up). Se mudar um preço, mude também o `data-price` do link (é o valor enviado ao Pixel da Meta) |
 | **Barra "A promoção termina hoje"** | `index.html`, logo depois do `<body>` (`<div class="topo-oferta">`). A data é preenchida sozinha pelo `js/main.js` com o dia de hoje (horário de Brasília). Para tirar a barra, apague esse bloco |
 | **Imagens** | Coloque os arquivos na pasta `img/` com os nomes abaixo. Enquanto um arquivo não existir, a página mostra um quadro tracejado com o nome que falta |
