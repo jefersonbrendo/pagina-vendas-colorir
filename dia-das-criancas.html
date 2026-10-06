@@ -442,29 +442,19 @@
     <!-- 6. PROVA SOCIAL — só prints de comentários REAIS das redes sociais -->
     <section class="prova">
       <div class="wrap">
-        <p class="pill">Comentários reais</p>
-        <h2>Quem brincou nunca esqueceu</h2>
-        <p class="center">Comentários de quem viu as bonecas nas nossas redes. Agora é a vez da neta.</p>
+        <p class="pill">Mensagens de clientes</p>
+        <h2>Quem já imprimiu, conta</h2>
+        <p class="center">Conversas com clientes que já imprimiram as bonecas.</p>
 
         <!-- CARROSSEL DE COMENTÁRIOS: passa sozinho, um por vez (pausa ao tocar/passar o mouse).
              IMAGENS: prints de comentários REAIS (Instagram/Facebook), em WebP, com nomes e fotos borrados
              se a pessoa não autorizou. Qualquer formato: a imagem aparece inteira, sem corte. Para mais, copie um bloco "car-slide". -->
-        <div class="carrossel" data-carrossel aria-roledescription="carrossel" aria-label="Comentários reais">
+        <div class="carrossel" data-carrossel data-car-item="depoimento" aria-roledescription="carrossel" aria-label="Comentários reais">
           <div class="car-viewport">
             <div class="car-track">
               <div class="car-slide">
-                <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/prova-wpp-1.webp — depoimento no WhatsApp">
-                  <img src="img/prova-wpp-1.webp" alt="Conversa no WhatsApp com uma cliente: ela pergunta como imprimir, faz certinho e conta que adorou o kit e que a filha ficou empolgada escolhendo as roupinhas e já pediu para imprimir mais" width="720" height="1080" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-                </figure>
-              </div>
-              <div class="car-slide">
                 <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/prova-wpp-2.webp — depoimento no WhatsApp">
                   <img src="img/prova-wpp-2.webp" alt="Conversa no WhatsApp com uma cliente: ela conta que o material é muito bom, que imprimiu para a neta no mesmo dia e aproveitou para imprimir algumas para ela também" width="720" height="1080" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-                </figure>
-              </div>
-              <div class="car-slide">
-                <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/prova-wpp-3.webp — depoimento no WhatsApp">
-                  <img src="img/prova-wpp-3.webp" alt="Conversa no WhatsApp com uma cliente: ela conta que a filha amou as bonecas, principalmente as roupinhas, e que é muito fácil, só imprimir e recortar" width="720" height="932" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
                 </figure>
               </div>
               <div class="car-slide">
@@ -472,12 +462,22 @@
                   <img src="img/prova-wpp-4.webp" alt="Mensagens no WhatsApp de uma cliente: ela voltou para contar que a criança amou, ficou brincando até a hora de dormir, cria os looks e inventa histórias com as bonequinhas e já quer brincar de novo" width="900" height="401" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
                 </figure>
               </div>
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/prova-wpp-1.webp — depoimento no WhatsApp">
+                  <img src="img/prova-wpp-1.webp" alt="Conversa no WhatsApp com uma cliente: ela pergunta como imprimir, faz certinho e conta que adorou o kit e que a filha ficou empolgada escolhendo as roupinhas e já pediu para imprimir mais" width="720" height="1080" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
+              <div class="car-slide">
+                <figure class="ph" style="aspect-ratio: 3 / 4" data-ph="img/prova-wpp-3.webp — depoimento no WhatsApp">
+                  <img src="img/prova-wpp-3.webp" alt="Conversa no WhatsApp com uma cliente: ela conta que a filha amou as bonecas, principalmente as roupinhas, e que é muito fácil, só imprimir e recortar" width="720" height="932" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+                </figure>
+              </div>
             </div>
           </div>
-          <button type="button" class="car-btn car-prev" data-car-prev aria-label="Comentário anterior">
+          <button type="button" class="car-btn car-prev" data-car-prev aria-label="Depoimento anterior">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
           </button>
-          <button type="button" class="car-btn car-next" data-car-next aria-label="Próximo comentário">
+          <button type="button" class="car-btn car-next" data-car-next aria-label="Próximo depoimento">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
           </button>
           <div class="car-dots" data-car-dots></div>

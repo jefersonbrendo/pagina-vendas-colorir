@@ -72,11 +72,13 @@
     var perView = function () {
       return parseInt(getComputedStyle(root).getPropertyValue('--per'), 10) || 1;
     };
+    // Nome do item no rótulo das bolinhas (ex.: data-car-item="depoimento"); sem o atributo, "amostra"
+    var itemName = root.getAttribute('data-car-item') || 'amostra';
     var dotsBox = root.querySelector('[data-car-dots]');
     var dots = originals.map(function (_, i) {
       var dot = document.createElement('button');
       dot.type = 'button';
-      dot.setAttribute('aria-label', 'Ver amostra ' + (i + 1) + ' de ' + count);
+      dot.setAttribute('aria-label', 'Ver ' + itemName + ' ' + (i + 1) + ' de ' + count);
       dot.addEventListener('click', function () { goTo(i); restart(); });
       dotsBox.appendChild(dot);
       return dot;
