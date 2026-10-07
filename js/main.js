@@ -263,6 +263,13 @@
     link.addEventListener(
       'click',
       function (event) {
+        // Já está indo para o checkout: ignora cliques repetidos (o script de UTMs da Utmify pode
+        // repetir o clique no link), para o InitiateCheckout não ser enviado duas vezes.
+        if (link.getAttribute('data-going')) {
+          event.preventDefault();
+          return;
+        }
+
         var value = parseFloat(link.getAttribute('data-price')) || undefined;
         if (window.fbq) {
           try {
@@ -275,7 +282,6 @@
 
         // Dá um instante para o evento sair antes de trocar de página.
         event.preventDefault();
-        if (link.getAttribute('data-going')) return;
         link.setAttribute('data-going', '1');
         var href = withPageParams(link.href);
         setTimeout(function () {
@@ -284,5 +290,13 @@
       },
       true
     );
+  });
+
+  // Voltou do checkout pelo botão "voltar" (página restaurada da memória): libera os botões de novo
+  window.addEventListener('pageshow', function (event) {
+    if (!event.persisted) return;
+    Array.prototype.forEach.call(links, function (link) {
+      link.removeAttribute('data-going');
+    });
   });
 })();
