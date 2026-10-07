@@ -36,12 +36,6 @@
       utmifyPixelId: '6ac5c95512656330f287a312',
       // ID do projeto no Microsoft Clarity (clarity.microsoft.com > Settings > Overview)
       clarityId: 'ytkietj34k',
-      // Botão fixo de WhatsApp (canto inferior direito): número com DDI e DDD, só dígitos (ex.: 5511999999999).
-      // Enquanto for o placeholder, o botão não aparece.
-      whatsapp: {
-        numero: '5585987200301',
-        mensagem: 'Olá! Tenho uma dúvida sobre as bonecas de papel.',
-      },
     };
   </script>
 
@@ -262,42 +256,6 @@
     @media (min-width: 760px) {
       h1 { font-size: 44px; }
       h2 { font-size: 36px; }
-    }
-    /* Botão fixo de WhatsApp no canto inferior direito, sempre visível durante a rolagem */
-    .whatsapp-fixo {
-      position: fixed;
-      right: 14px;
-      bottom: calc(14px + env(safe-area-inset-bottom));
-      z-index: 30;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px 10px 12px;
-      border-radius: 999px;
-      background: #25d366;
-      color: #fff;
-      font-family: var(--body);
-      font-size: 15px;
-      font-weight: 800;
-      line-height: 1.2;
-      text-decoration: none;
-      box-shadow: 0 8px 22px -6px rgba(15, 23, 42, 0.45);
-    }
-    .whatsapp-fixo[hidden] {
-      display: none;
-    }
-    .whatsapp-fixo:hover {
-      background: #1ebe5b;
-    }
-    .whatsapp-fixo svg {
-      width: 24px;
-      height: 24px;
-      flex: 0 0 auto;
-      fill: #fff;
-    }
-    /* Espaço no fim da página para o botão não cobrir o rodapé */
-    .rodape {
-      padding-bottom: 88px;
     }
   </style>
 </head>
@@ -725,22 +683,6 @@
     <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
     </div>
   </dialog>
-
-  <!-- BOTÃO FIXO DE WHATSAPP: o número e a mensagem ficam em window.CONFIG.whatsapp, no topo do <head> -->
-  <a class="whatsapp-fixo" data-whatsapp href="#" target="_blank" rel="noopener" hidden>
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
-    <span>Dúvidas? Chame no WhatsApp</span>
-  </a>
-  <script>
-    (function () {
-      var cfg = (window.CONFIG || {}).whatsapp || {};
-      var numero = String(cfg.numero || '').replace(/\D/g, '');
-      var botao = document.querySelector('[data-whatsapp]');
-      if (!botao || !numero) return;
-      botao.href = 'https://wa.me/' + numero + (cfg.mensagem ? '?text=' + encodeURIComponent(cfg.mensagem) : '');
-      botao.hidden = false;
-    })();
-  </script>
 
   <script src="js/main.js" defer></script>
 </body>
