@@ -14,6 +14,7 @@ e acesse http://localhost:8000.
 | **ID do Pixel da Meta** | `index.html`, `window.CONFIG.metaPixelId` **e** na tag `<noscript>` logo depois do `<body>` (`id=SEU_PIXEL_ID_META`) |
 | **Pixel da Utmify** | `index.html`, `window.CONFIG.utmifyPixelId`. O script de UTMs da Utmify já está no `<head>` e não precisa de ID |
 | **Microsoft Clarity** | Só no `dia-das-criancas.html`, em `window.CONFIG.clarityId` (ID do projeto, hoje `ytkietj34k`). Para desligar, troque por `SEU_ID_CLARITY`. A página principal (`index.html`) não tem Clarity |
+| **Eventos e tags do Clarity** | `js/tracking-clarity.js` (só no `dia-das-criancas.html`). Seções marcadas com `data-secao` (evento `viu_<nome>`), botões de compra com `data-cta` (tag `cta_posicao`). Para ver no console o que é enviado, abra a página com `?clarity_debug=1` (desliga com `?clarity_debug=0`) |
 | **Preços, nomes e benefícios dos pacotes** | `index.html`, seção `<!-- 7. OFERTA E PREÇOS -->` (cards) e o `<dialog id="oferta">` no fim da página (pop-up). Se mudar um preço, mude também o `data-price` do link (é o valor enviado ao Pixel da Meta) |
 | **Barra "A promoção termina hoje"** | `index.html`, logo depois do `<body>` (`<div class="topo-oferta">`). A data é preenchida sozinha pelo `js/main.js` com o dia de hoje (horário de Brasília). Para tirar a barra, apague esse bloco |
 | **Imagens** | Coloque os arquivos na pasta `img/` com os nomes abaixo. Enquanto um arquivo não existir, a página mostra um quadro tracejado com o nome que falta |

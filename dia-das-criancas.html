@@ -438,7 +438,7 @@
   <main id="conteudo">
 
     <!-- 1. TOPO -->
-    <section class="hero">
+    <section class="hero" id="topo" data-secao="topo">
       <div class="wrap">
         <!-- DIA-DAS-CRIANCAS -->
         <h1>O presente de Dia das Crianças que vocês duas vão fazer juntas</h1>
@@ -468,13 +468,13 @@
           </div>
         </div>
 
-        <a class="btn" href="#planos">QUERO O PRESENTE DA MINHA NETA</a>
+        <a class="btn" href="#planos" data-cta="hero">QUERO O PRESENTE DA MINHA NETA</a>
         <p class="micro">Para imprimir em casa ou na papelaria · Você recebe no seu <span class="nw">e-mail</span> · Pagamento seguro</p>
       </div>
     </section>
 
     <!-- 4. O QUE VOCÊ RECEBE -->
-    <section class="recebe">
+    <section class="recebe" id="o-que-voce-recebe" data-secao="o_que_recebe">
       <div class="wrap">
         <p class="pill">Material completo</p>
         <h2>O que você recebe</h2>
@@ -549,7 +549,7 @@
     </section>
 
     <!-- 3. POR QUE É UM BOM PRESENTE -->
-    <section class="para-quem">
+    <section class="para-quem" id="por-que-presente" data-secao="por_que_presente">
       <div class="wrap">
         <p class="pill">Por que é um bom presente</p>
         <h2>Um presente de vó, feito à mão</h2>
@@ -576,7 +576,7 @@
     </section>
 
     <!-- 5. PASSO A PASSO -->
-    <section class="passos">
+    <section class="passos" id="passo-a-passo" data-secao="passo_a_passo">
       <div class="wrap">
         <p class="pill">Passo a passo</p>
         <!-- PASSO A PASSO EM IMAGENS, cada uma com legenda: 1º receber, 2º imprimir, 3º brincar.
@@ -608,7 +608,7 @@
     </section>
 
     <!-- 6. PROVA SOCIAL — só prints de comentários REAIS das redes sociais -->
-    <section class="prova">
+    <section class="prova" id="depoimentos" data-secao="depoimentos">
       <div class="wrap">
         <p class="pill">Mensagens de clientes</p>
         <h2>Quem já imprimiu, conta</h2>
@@ -654,7 +654,7 @@
     </section>
 
     <!-- 7. OFERTA E PREÇOS -->
-    <section class="planos" id="planos">
+    <section class="planos" id="planos" data-secao="oferta">
       <div class="wrap">
         <p class="pill">Pagamento único</p>
         <h2>Escolha o presente</h2>
@@ -676,7 +676,7 @@
               <li>Suporte prioritário via WhatsApp</li>
               <li>Acesso vitalício ilimitado</li>
             </ul>
-            <a class="btn" href="#planos" data-checkout="alegria" data-price="24.90">QUERO O PRESENTE DA MINHA NETA</a>
+            <a class="btn" href="#planos" data-checkout="alegria" data-price="24.90" data-cta="plano_alegria">QUERO O PRESENTE DA MINHA NETA</a>
           </article>
 
           <!-- PACOTE BÁSICO: o botão abre o pop-up com a oferta do Pacote Alegria por R$ 16,90 -->
@@ -692,7 +692,7 @@
               <li>Suporte via WhatsApp</li>
               <li>Acesso vitalício</li>
             </ul>
-            <button type="button" class="btn btn-basico" data-open-oferta>QUERO O PRESENTE DA MINHA NETA</button>
+            <button type="button" class="btn btn-basico" data-open-oferta data-cta="plano_basico">QUERO O PRESENTE DA MINHA NETA</button>
           </article>
         </div>
         <p class="micro center">Para imprimir em casa ou na papelaria · Você recebe no seu <span class="nw">e-mail</span> · Pagamento seguro</p>
@@ -700,7 +700,7 @@
     </section>
 
     <!-- 8. GARANTIA -->
-    <section class="garantia">
+    <section class="garantia" id="garantia" data-secao="garantia">
       <div class="wrap narrow">
         <div class="garantia-card">
           <div class="garantia-icon" aria-hidden="true">
@@ -718,7 +718,7 @@
     </section>
 
     <!-- 9. PERGUNTAS FREQUENTES -->
-    <section class="faq">
+    <section class="faq" id="perguntas-frequentes" data-secao="faq">
       <div class="wrap narrow">
         <p class="pill">Tire suas dúvidas</p>
         <h2>Perguntas frequentes</h2>
@@ -790,12 +790,12 @@
 
     <!-- 10. CHAMADA FINAL -->
     <!-- DIA-DAS-CRIANCAS -->
-    <section class="final">
+    <section class="final" id="chamada-final" data-secao="chamada_final">
       <div class="wrap narrow">
         <p class="pill">Presente de Dia das Crianças</p>
         <h2>Neste Dia das Crianças, dê uma tarde com você de presente.</h2>
         <p>Imprime hoje, presenteia no dia 12.</p>
-        <a class="btn" href="#planos">QUERO O PRESENTE DA MINHA NETA</a>
+        <a class="btn" href="#planos" data-cta="final">QUERO O PRESENTE DA MINHA NETA</a>
         <p class="micro">Para imprimir em casa ou na papelaria · Você recebe no seu <span class="nw">e-mail</span> · Pagamento seguro</p>
       </div>
     </section>
@@ -840,8 +840,8 @@
       </ul>
     </div>
 
-    <a class="btn btn-ouro" href="#planos" data-checkout="alegriaOferta" data-price="16.90">SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90</a>
-    <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
+    <a class="btn btn-ouro" href="#planos" data-checkout="alegriaOferta" data-price="16.90" data-cta="popup_alegria">SIM! QUERO O PACOTE ALEGRIA POR R$ 16,90</a>
+    <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90" data-cta="popup_basico">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
     </div>
   </dialog>
 
@@ -945,5 +945,7 @@
   </script>
 
   <script src="js/main.js" defer></script>
+  <!-- Eventos e tags extras do Microsoft Clarity (seções vistas, rolagem, cliques de compra, FAQ, tempo) -->
+  <script src="js/tracking-clarity.js" defer></script>
 </body>
 </html>
