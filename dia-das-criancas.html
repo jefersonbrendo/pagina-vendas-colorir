@@ -88,19 +88,57 @@
   <!-- Fontes (Google Fonts, hospedadas no próprio site para carregar mais rápido no 4G) -->
   <link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <!-- Imagem do topo: aparece primeiro na tela, então carrega com prioridade -->
-  <link rel="preload" href="img/com-a-neta.webp" as="image" type="image/webp" fetchpriority="high" />
+  <!-- Capa do vídeo do topo: aparece primeiro na tela, então carrega com prioridade -->
+  <link rel="preload" href="img/capa-demo.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- Ajustes só desta versão (o css/style.css é o mesmo da página principal e não foi alterado) -->
   <style>
-    /* Imagem de avó e neta no topo, no lugar do vídeo */
-    .foto-hero {
-      max-width: 560px;
+    /* Vídeo do topo dentro de uma moldura de celular */
+    .celular {
+      position: relative;
+      width: 100%;
+      max-width: 290px;
       margin: 24px auto;
-      border: 4px solid #fff;
-      border-radius: 28px;
-      box-shadow: 0 20px 40px -18px rgba(225, 29, 116, 0.45);
+      padding: 12px;
+      border-radius: 46px;
+      background: #111827;
+      box-shadow:
+        0 0 0 2px #374151 inset,
+        0 24px 48px -18px rgba(225, 29, 116, 0.55),
+        0 10px 24px -12px rgba(15, 23, 42, 0.5);
+    }
+    /* Alto-falante/câmera no topo da moldura */
+    .celular::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      z-index: 2;
+      width: 74px;
+      height: 18px;
+      margin-left: -37px;
+      border-radius: 999px;
+      background: #111827;
+    }
+    .celular-tela {
+      position: relative;
+      aspect-ratio: 480 / 794;
+      border-radius: 34px;
+      overflow: hidden;
+      background: #fff url('img/capa-demo.webp') center / cover no-repeat;
+    }
+    .celular-tela video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none; /* sem controles nem pausa ao tocar */
+    }
+    @media (min-width: 760px) {
+      .celular {
+        max-width: 320px;
+      }
     }
     /* Botões com texto maior: se quebrar em duas linhas, fica bem espaçado */
     .btn {
@@ -408,16 +446,27 @@
           Mais de 300 bonecas de papel para imprimir, colorir e recortar com a sua neta. A brincadeira da sua infância, agora com ela.
         </p>
 
-        <!-- IMAGEM DO TOPO: avó e neta recortando bonecas de papel juntas (a mesma da seção "Para quem é?" da página principal). -->
-        <figure class="ph foto-hero" style="aspect-ratio: 4 / 3" data-ph="img/com-a-neta.webp — avó e neta recortando juntas">
-          <img
-            src="img/com-a-neta.webp"
-            alt="Avó e neta sorrindo enquanto recortam bonecas de papel juntas na mesa"
-            width="1000" height="750"
-            fetchpriority="high" decoding="async"
-            onerror="this.parentNode.classList.add('ph-missing')"
-          />
-        </figure>
+        <!-- VÍDEO DO TOPO dentro de uma moldura de celular: gravação de tela do material (área de membros e arquivos),
+             sem a barra de status do celular. Roda sozinho, sem som, em loop e sem controles; começa depois que a página
+             carrega (até lá aparece a capa). O js/main.js cuida do carregamento ([data-video]).
+             Para trocar: substitua video/demo-celular.mp4 (480x794) e img/capa-demo.webp. -->
+        <div class="celular">
+          <div class="celular-tela" data-video>
+            <video
+              data-src="video/demo-celular.mp4"
+              poster="img/capa-demo.webp"
+              width="480" height="794"
+              muted
+              autoplay
+              loop
+              playsinline
+              preload="none"
+              disablepictureinpicture
+              disableremoteplayback
+              aria-label="Vídeo: as bonecas de papel sendo recortadas e o material aberto no celular, com as categorias e os arquivos para imprimir"
+            ></video>
+          </div>
+        </div>
 
         <a class="btn" href="#planos">QUERO O PRESENTE DA MINHA NETA</a>
         <p class="micro">Para imprimir em casa ou na papelaria · Você recebe no seu <span class="nw">e-mail</span> · Pagamento seguro</p>
