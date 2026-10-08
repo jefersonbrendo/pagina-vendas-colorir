@@ -17,7 +17,7 @@ e acesse http://localhost:8000.
 | **Preços, nomes e benefícios dos pacotes** | `index.html`, seção `<!-- 7. OFERTA E PREÇOS -->` (cards) e o `<dialog id="oferta">` no fim da página (pop-up). Se mudar um preço, mude também o `data-price` do link (é o valor enviado ao Pixel da Meta) |
 | **Barra "A promoção termina hoje"** | `index.html`, logo depois do `<body>` (`<div class="topo-oferta">`). A data é preenchida sozinha pelo `js/main.js` com o dia de hoje (horário de Brasília). Para tirar a barra, apague esse bloco |
 | **Imagens** | Coloque os arquivos na pasta `img/` com os nomes abaixo. Enquanto um arquivo não existir, a página mostra um quadro tracejado com o nome que falta |
-| **E-mail de suporte e nome da marca** | `index.html`, rodapé (`<!-- 11. RODAPÉ -->`): `suporte@bonecasdepapel.com.br` e "Bonecas de papel" |
+| **E-mail de suporte e nome da marca** | Rodapé do `index.html` e do `dia-das-criancas.html` (`<!-- 11. RODAPÉ -->`) e as páginas `privacidade.html` e `termos.html`: `suportebonecadepapel@gmail.com` e "Bonecas de papel" |
 | **Política de privacidade e termos** | `privacidade.html` e `termos.html` |
 
 Os links e IDs ficam todos no `window.CONFIG`. Enquanto estiverem como `SEU-...`, os pixels não
