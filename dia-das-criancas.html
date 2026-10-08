@@ -114,7 +114,7 @@
       margin-bottom: 8px;
     }
     /* Faixa das amostras em "O que você recebe": passa sozinha, sem parar, de ponta a ponta da tela.
-       O trilho tem as 5 amostras quatro vezes e anda metade do seu tamanho: a volta emenda sem "pulo". */
+       O trilho tem as fotos duas vezes e anda metade do seu tamanho: a volta emenda sem "pulo". */
     .recebe {
       overflow: hidden;
     }
@@ -125,9 +125,10 @@
     .faixa-track {
       display: flex;
       width: max-content;
-      animation: faixa-passa 60s linear infinite;
+      animation: faixa-passa 54s linear infinite;
     }
-    .faixa:hover .faixa-track {
+    .faixa:hover .faixa-track,
+    .zoom-aberto .faixa-track {
       animation-play-state: paused;
     }
     .faixa-item {
@@ -136,6 +137,12 @@
       max-width: 340px;
       margin: 0 14px 0 0;
       border: 2px solid var(--pink-100);
+      background: #fff;
+      cursor: zoom-in;
+    }
+    /* Foto inteira dentro do card, sem corte (há fotos quadradas e mais largas que altas) */
+    .faixa-item img {
+      object-fit: contain;
     }
     @keyframes faixa-passa {
       to {
@@ -257,6 +264,97 @@
       h1 { font-size: 44px; }
       h2 { font-size: 36px; }
     }
+    /* Visualizador em tela cheia: abre ao tocar numa foto da faixa de amostras */
+    .zoom-aberto {
+      overflow: hidden; /* a página não rola por trás */
+    }
+    .zoom {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: rgba(15, 23, 42, 0.9);
+      color: #fff;
+      overflow: hidden;
+    }
+    .zoom::backdrop {
+      background: rgba(15, 23, 42, 0.94);
+    }
+    .zoom[open] {
+      display: flex;
+      flex-direction: column;
+    }
+    .zoom-palco {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(64px + env(safe-area-inset-top)) 12px 8px;
+    }
+    .zoom-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+    }
+    .zoom-fechar {
+      position: absolute;
+      top: calc(10px + env(safe-area-inset-top));
+      right: 10px;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--ink);
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.5);
+    }
+    .zoom-barra {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 8px 12px calc(16px + env(safe-area-inset-bottom));
+    }
+    .zoom-nav {
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .zoom-nav svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .zoom-contador {
+      min-width: 64px;
+      margin: 0;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
   </style>
 </head>
 <body>
@@ -307,71 +405,66 @@
         </p>
       </div>
 
-      <!-- AMOSTRAS: capas dos kits numa faixa que passa sozinha, sem parar, de ponta a ponta da tela.
-           Formato 3:4, 750x1000, em WebP. As 5 amostras aparecem quatro vezes para a volta não ter "pulo" nem buraco:
-           para trocar ou acrescentar uma, mude nos quatro grupos (os três últimos são cópias, com alt vazio). -->
+      <!-- AMOSTRAS: fotos do material numa faixa que passa sozinha, sem parar, de ponta a ponta da tela.
+           Tocar numa foto abre ela em tela cheia (visualizador no fim da página). As fotos aparecem inteiras,
+           sem corte, dentro de um card 3:4 com fundo branco. O grupo aparece duas vezes para a volta não ter "pulo":
+           para trocar ou acrescentar uma foto, mude nos dois grupos (o segundo é a cópia, com alt vazio) e ajuste data-zoom. -->
       <div class="faixa" aria-label="Amostras das bonecas" role="region">
         <div class="faixa-track">
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra" data-zoom="0" role="button" tabindex="0" aria-label="Ampliar foto 1 de 9">
             <img src="img/amostra-1.webp" alt="Amostra do kit Bonecas Prontas: princesa de vestido vermelho e dourado" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra" data-zoom="1" role="button" tabindex="0" aria-label="Ampliar foto 2 de 9">
             <img src="img/amostra-2.webp" alt="Amostra do kit Realistas: boneca ruiva com roupinhas, chapéu e sapatos para recortar" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra" data-zoom="2" role="button" tabindex="0" aria-label="Ampliar foto 3 de 9">
             <img src="img/amostra-3.webp" alt="Amostra do kit Pets: bichinhos fofos para recortar" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra" data-zoom="3" role="button" tabindex="0" aria-label="Ampliar foto 4 de 9">
             <img src="img/amostra-4.webp" alt="Amostra do kit Bonecas Fashion: boneca com vestido lilás, coroa, luvas e sapatos" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-5.webp — bonecas recortadas nas mãos">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-5.webp — página de amostra" data-zoom="4" role="button" tabindex="0" aria-label="Ampliar foto 5 de 9">
             <img src="img/amostra-5.webp" alt="Bonecas de papel recortadas, com roupinhas e coroas de flores, nas mãos de uma pessoa" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <!-- cópias das 5 amostras, para o loop (a faixa precisa ser mais larga que a tela, mesmo no computador) -->
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra" aria-hidden="true">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-6.webp — página de amostra" data-zoom="5" role="button" tabindex="0" aria-label="Ampliar foto 6 de 9">
+            <img src="img/amostra-6.webp" alt="Amostra: boneca com roupas de inverno, casaco rosa, suéter, gorro, protetor de orelha, botas e meias para recortar" width="787" height="793" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-7.webp — página de amostra" data-zoom="6" role="button" tabindex="0" aria-label="Ampliar foto 7 de 9">
+            <img src="img/amostra-7.webp" alt="Amostra: boneca fada com vestido lilás de estrelas, asas, tiara de lua, varinha, meias e botas para recortar" width="790" height="790" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-8.webp — página de amostra" data-zoom="7" role="button" tabindex="0" aria-label="Ampliar foto 8 de 9">
+            <img src="img/amostra-8.webp" alt="Amostra: cartela de acessórios para recortar, com laços, bolsas, maquiagem, perfumes, casinha, cama e carrinho" width="993" height="832" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-9.webp — página de amostra" data-zoom="8" role="button" tabindex="0" aria-label="Ampliar foto 9 de 9">
+            <img src="img/amostra-9.webp" alt="Amostra: princesa de vestido azul com estrelas e tiara" width="590" height="787" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <!-- cópia do grupo, para o loop -->
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra" data-zoom="0" aria-hidden="true">
             <img src="img/amostra-1.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra" aria-hidden="true">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra" data-zoom="1" aria-hidden="true">
             <img src="img/amostra-2.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra" aria-hidden="true">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra" data-zoom="2" aria-hidden="true">
             <img src="img/amostra-3.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra" aria-hidden="true">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra" data-zoom="3" aria-hidden="true">
             <img src="img/amostra-4.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-5.webp — bonecas recortadas nas mãos" aria-hidden="true">
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-5.webp — página de amostra" data-zoom="4" aria-hidden="true">
             <img src="img/amostra-5.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra" aria-hidden="true">
-            <img src="img/amostra-1.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-6.webp — página de amostra" data-zoom="5" aria-hidden="true">
+            <img src="img/amostra-6.webp" alt="" width="787" height="793" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra" aria-hidden="true">
-            <img src="img/amostra-2.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-7.webp — página de amostra" data-zoom="6" aria-hidden="true">
+            <img src="img/amostra-7.webp" alt="" width="790" height="790" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra" aria-hidden="true">
-            <img src="img/amostra-3.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-8.webp — página de amostra" data-zoom="7" aria-hidden="true">
+            <img src="img/amostra-8.webp" alt="" width="993" height="832" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra" aria-hidden="true">
-            <img src="img/amostra-4.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-5.webp — bonecas recortadas nas mãos" aria-hidden="true">
-            <img src="img/amostra-5.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-1.webp — página de amostra" aria-hidden="true">
-            <img src="img/amostra-1.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-2.webp — página de amostra" aria-hidden="true">
-            <img src="img/amostra-2.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-3.webp — página de amostra" aria-hidden="true">
-            <img src="img/amostra-3.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-4.webp — página de amostra" aria-hidden="true">
-            <img src="img/amostra-4.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-5.webp — bonecas recortadas nas mãos" aria-hidden="true">
-            <img src="img/amostra-5.webp" alt="" width="750" height="1000" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
+          <figure class="ph faixa-item" style="aspect-ratio: 3 / 4" data-ph="img/amostra-9.webp — página de amostra" data-zoom="8" aria-hidden="true">
+            <img src="img/amostra-9.webp" alt="" width="590" height="787" decoding="async" fetchpriority="low" onerror="this.parentNode.classList.add('ph-missing')" />
           </figure>
         </div>
       </div>
@@ -683,6 +776,105 @@
     <a class="oferta-recusar" href="#planos" data-checkout="basico" data-price="9.90">Não, obrigada. Quero apenas o Básico por R$ 9,90</a>
     </div>
   </dialog>
+
+  <!-- VISUALIZADOR EM TELA CHEIA: abre ao tocar numa foto da faixa de amostras ("O que você recebe").
+       Troca de foto pelas setas, deslizando o dedo ou pelas setas do teclado; fecha no X, no Esc ou tocando fora da foto. -->
+  <dialog id="zoom" class="zoom" aria-label="Foto ampliada">
+    <button type="button" class="zoom-fechar" data-zoom-fechar aria-label="Fechar">&times;</button>
+    <div class="zoom-palco" data-zoom-palco>
+      <img class="zoom-img" alt="" />
+    </div>
+    <div class="zoom-barra">
+      <button type="button" class="zoom-nav" data-zoom-anterior aria-label="Foto anterior">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+      </button>
+      <p class="zoom-contador" data-zoom-contador aria-live="polite">1 / 1</p>
+      <button type="button" class="zoom-nav" data-zoom-proxima aria-label="Próxima foto">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </dialog>
+  <script>
+    (function () {
+      var dlg = document.getElementById('zoom');
+      if (!dlg || typeof dlg.showModal !== 'function') return;
+      var img = dlg.querySelector('.zoom-img');
+      var contador = dlg.querySelector('[data-zoom-contador]');
+      var palco = dlg.querySelector('[data-zoom-palco]');
+      var raiz = document.documentElement;
+
+      // Lista das fotos (só o primeiro grupo da faixa; o segundo é cópia)
+      var fotos = [];
+      Array.prototype.forEach.call(document.querySelectorAll('.faixa-item[data-zoom]:not([aria-hidden])'), function (fig) {
+        var foto = fig.querySelector('img');
+        if (foto) fotos[Number(fig.getAttribute('data-zoom'))] = { src: foto.getAttribute('src'), alt: foto.alt };
+      });
+      if (!fotos.length) return;
+
+      var atual = 0;
+      function mostra(i) {
+        atual = (i + fotos.length) % fotos.length;
+        img.src = fotos[atual].src;
+        img.alt = fotos[atual].alt;
+        contador.textContent = (atual + 1) + ' / ' + fotos.length;
+      }
+      function abre(i) {
+        mostra(i);
+        raiz.classList.add('zoom-aberto');
+        dlg.showModal();
+      }
+      function fecha() {
+        if (dlg.open) dlg.close();
+      }
+      dlg.addEventListener('close', function () {
+        raiz.classList.remove('zoom-aberto');
+      });
+
+      // Tocar numa foto da faixa (inclusive nas cópias) abre a foto correspondente
+      document.addEventListener('click', function (e) {
+        var fig = e.target.closest && e.target.closest('.faixa-item[data-zoom]');
+        if (fig) abre(Number(fig.getAttribute('data-zoom')));
+      });
+      document.addEventListener('keydown', function (e) {
+        var fig = e.target.closest && e.target.closest('.faixa-item[data-zoom]');
+        if (fig && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          abre(Number(fig.getAttribute('data-zoom')));
+        }
+      });
+
+      dlg.querySelector('[data-zoom-fechar]').addEventListener('click', fecha);
+      dlg.querySelector('[data-zoom-anterior]').addEventListener('click', function () { mostra(atual - 1); });
+      dlg.querySelector('[data-zoom-proxima]').addEventListener('click', function () { mostra(atual + 1); });
+      // Tocar fora da foto (no fundo escuro) fecha
+      palco.addEventListener('click', function (e) {
+        if (e.target === palco) fecha();
+      });
+      dlg.addEventListener('click', function (e) {
+        if (e.target === dlg) fecha();
+      });
+      dlg.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') mostra(atual - 1);
+        if (e.key === 'ArrowRight') mostra(atual + 1);
+      });
+
+      // Deslizar o dedo para o lado troca de foto
+      var inicioX = null;
+      var inicioY = null;
+      palco.addEventListener('touchstart', function (e) {
+        if (e.touches.length !== 1) { inicioX = null; return; }
+        inicioX = e.touches[0].clientX;
+        inicioY = e.touches[0].clientY;
+      }, { passive: true });
+      palco.addEventListener('touchend', function (e) {
+        if (inicioX === null) return;
+        var dx = e.changedTouches[0].clientX - inicioX;
+        var dy = e.changedTouches[0].clientY - inicioY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) mostra(atual + (dx < 0 ? 1 : -1));
+        inicioX = null;
+      });
+    })();
+  </script>
 
   <script src="js/main.js" defer></script>
 </body>
