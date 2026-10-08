@@ -264,6 +264,25 @@
       h1 { font-size: 44px; }
       h2 { font-size: 36px; }
     }
+    /* Passo a passo em imagens ("Como vira presente"): uma embaixo da outra no celular, 3 lado a lado no computador */
+    .passos-fotos {
+      display: grid;
+      gap: 16px;
+      max-width: 520px;
+      margin: 8px auto 28px;
+    }
+    .passo-foto {
+      margin: 0;
+      border: 2px solid var(--pink-100);
+      background: #fff;
+      box-shadow: 0 6px 18px -10px rgba(225, 29, 116, 0.3);
+    }
+    @media (min-width: 760px) {
+      .passos-fotos {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: none;
+      }
+    }
     /* Visualizador em tela cheia: abre ao tocar numa foto da faixa de amostras */
     .zoom-aberto {
       overflow: hidden; /* a página não rola por trás */
@@ -502,6 +521,19 @@
       <div class="wrap">
         <p class="pill">Passo a passo</p>
         <h2>Como vira presente</h2>
+        <!-- PASSO A PASSO EM IMAGENS: 1º receber (e-mail e WhatsApp), 2º imprimir, 3º brincar.
+             Quadradas, 1000x1000, em WebP. Uma embaixo da outra no celular, três lado a lado no computador. -->
+        <div class="passos-fotos">
+          <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-1.webp — 1º passo">
+            <img src="img/passo-1.webp" alt="1º passo: você recebe as bonecas de papel por e-mail e WhatsApp logo após a compra, para imprimir e recortar" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-2.webp — 2º passo">
+            <img src="img/passo-2.webp" alt="2º passo: imprima em papel sulfite comum ou, se preferir, em papel mais firme, como couchê ou cartolina. Pode imprimir quantas vezes quiser" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+          <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-3.webp — 3º passo">
+            <img src="img/passo-3.webp" alt="3º passo: brinque com as bonecas de papel. Recorte as bonecas e as roupinhas e, se quiser, plastifique para durar mais. Avó e neta brincando juntas" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+          </figure>
+        </div>
         <ol class="steps">
           <li>
             <span class="step-icon" aria-hidden="true">
