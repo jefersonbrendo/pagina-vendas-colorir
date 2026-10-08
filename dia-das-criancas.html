@@ -264,7 +264,7 @@
       h1 { font-size: 44px; }
       h2 { font-size: 36px; }
     }
-    /* Passo a passo em imagens ("Como vira presente"): uma embaixo da outra no celular, 3 lado a lado no computador */
+    /* Passo a passo em imagens com legenda: uma embaixo da outra no celular, 3 lado a lado no computador */
     .passos-fotos {
       display: grid;
       gap: 16px;
@@ -276,6 +276,16 @@
       border: 2px solid var(--pink-100);
       background: #fff;
       box-shadow: 0 6px 18px -10px rgba(225, 29, 116, 0.3);
+    }
+    .passo-legenda {
+      margin: 10px 4px 0;
+      font-size: 17px;
+      line-height: 1.45;
+      color: var(--ink-2);
+      text-align: center;
+    }
+    .passo-legenda strong {
+      color: var(--pink-700);
     }
     @media (min-width: 760px) {
       .passos-fotos {
@@ -516,57 +526,32 @@
       </div>
     </section>
 
-    <!-- 5. COMO VIRA PRESENTE -->
+    <!-- 5. PASSO A PASSO -->
     <section class="passos">
       <div class="wrap">
         <p class="pill">Passo a passo</p>
-        <h2>Como vira presente</h2>
-        <!-- PASSO A PASSO EM IMAGENS: 1º receber (e-mail e WhatsApp), 2º imprimir, 3º brincar.
+        <!-- PASSO A PASSO EM IMAGENS, cada uma com legenda: 1º receber, 2º imprimir, 3º brincar.
              Quadradas, 1000x1000, em WebP. Uma embaixo da outra no celular, três lado a lado no computador. -->
         <div class="passos-fotos">
-          <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-1.webp — 1º passo">
-            <img src="img/passo-1.webp" alt="1º passo: você recebe as bonecas de papel por e-mail e WhatsApp logo após a compra, para imprimir e recortar" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-2.webp — 2º passo">
-            <img src="img/passo-2.webp" alt="2º passo: imprima em papel sulfite comum ou, se preferir, em papel mais firme, como couchê ou cartolina. Pode imprimir quantas vezes quiser" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
-          <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-3.webp — 3º passo">
-            <img src="img/passo-3.webp" alt="3º passo: brinque com as bonecas de papel. Recorte as bonecas e as roupinhas e, se quiser, plastifique para durar mais. Avó e neta brincando juntas" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
-          </figure>
+          <div class="passo">
+            <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-1.webp — 1º passo">
+              <img src="img/passo-1.webp" alt="1º passo: você recebe as bonecas de papel por e-mail e WhatsApp logo após a compra, para imprimir e recortar" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+            </figure>
+            <p class="passo-legenda"><strong>1º passo:</strong> Logo depois da compra, as bonecas chegam no seu <span class="nw">e-mail</span> e no WhatsApp, prontas para imprimir.</p>
+          </div>
+          <div class="passo">
+            <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-2.webp — 2º passo">
+              <img src="img/passo-2.webp" alt="2º passo: imprima em papel sulfite comum ou, se preferir, em papel mais firme, como couchê ou cartolina. Pode imprimir quantas vezes quiser" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+            </figure>
+            <p class="passo-legenda"><strong>2º passo:</strong> Imprima em papel sulfite comum ou, se preferir, num papel mais firme, como couchê ou cartolina. Dá para imprimir quantas vezes quiser.</p>
+          </div>
+          <div class="passo">
+            <figure class="ph passo-foto" style="aspect-ratio: 1 / 1" data-ph="img/passo-3.webp — 3º passo">
+              <img src="img/passo-3.webp" alt="3º passo: brinque com as bonecas de papel. Recorte as bonecas e as roupinhas e, se quiser, plastifique para durar mais. Avó e neta brincando juntas" width="1000" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('ph-missing')" />
+            </figure>
+            <p class="passo-legenda"><strong>3º passo:</strong> Recorte as bonecas e as roupinhas e brinque junto com a sua neta. Se quiser, plastifique para durar mais.</p>
+          </div>
         </div>
-        <ol class="steps">
-          <li>
-            <span class="step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
-            </span>
-            <span class="step-text"><strong>1.</strong> Você compra e recebe na hora, no seu <span class="nw">e-mail</span>.</span>
-          </li>
-          <li>
-            <span class="step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg>
-            </span>
-            <span class="step-text"><strong>2.</strong> Imprime em casa ou leva na papelaria do bairro.</span>
-          </li>
-          <li>
-            <span class="step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg>
-            </span>
-            <span class="step-text"><strong>3.</strong> Recorta e, se quiser, pede para plastificar.</span>
-          </li>
-          <li>
-            <span class="step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </span>
-            <span class="step-text"><strong>4.</strong> Coloca num envelope com o nome da neta e um laço.</span>
-          </li>
-          <!-- DIA-DAS-CRIANCAS -->
-          <li>
-            <span class="step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.1A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/></svg>
-            </span>
-            <span class="step-text"><strong>5.</strong> Dá de presente no dia 12 e brinca junto.</span>
-          </li>
-        </ol>
         <p class="apoio">
           Não tem impressora? É só mandar pelo WhatsApp para a papelaria do seu bairro.
         </p>
